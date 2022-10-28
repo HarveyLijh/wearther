@@ -7,17 +7,21 @@ It's implemented using React with JS
 Go to the project directory
 
 ```bash
-$ cd wearther-frontend
+$ cd Birdy
 ```
-Install node modules
+Activate virtual environment
 ```bash
-$ npm install
+$ ./env/Scripts/Activate
 ```
-Run project locally
+Install requirements
 ```bash
-$ npm run
+$ pip install -r requirements.txt
 ```
-Build project for deployment
+Install database migrations
 ```bash
-$ npm run build
+$ python manage.py migrate
+```
+Run backend server locally
+```bash
+$ python manage.py runserver
 ```
