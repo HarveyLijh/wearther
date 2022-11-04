@@ -48,6 +48,8 @@ function DashboardNavbar({ absolute, light, isMini }) {
   const logOut = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("username");
+    localStorage.removeItem("signup");
+    localStorage.removeItem("signup_completed");
     navigate("/authentication/sign-in");
   };
 

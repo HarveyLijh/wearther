@@ -2,9 +2,8 @@
 import Box from "@mui/material/Box";
 import { styled } from "@mui/material/styles";
 
-export default styled(Box)(({ theme, ownerState }) => {
+export default styled(Box)(({ theme }) => {
   const { palette, typography, functions, boxShadows } = theme;
-  const { darkMode } = ownerState;
 
   const { white, dark, light, grey, gradients, info } = palette;
   const { size, fontWeightMedium, fontWeightBold, fontWeightRegular, fontWeightLight } = typography;
@@ -39,11 +38,11 @@ export default styled(Box)(({ theme, ownerState }) => {
     "& .fc .fc-col-header-cell-cushion": {
       fontSize: size.sm,
       fontWeight: fontWeightMedium,
-      color: darkMode ? white.main : grey[500],
+      color: grey[500],
     },
 
     "& .fc .fc-daygrid-day-number": {
-      color: darkMode ? white.main : grey[700],
+      color: grey[700],
       fontSize: size.sm,
       fontWeight: fontWeightLight,
       width: "100%",
@@ -112,7 +111,7 @@ export default styled(Box)(({ theme, ownerState }) => {
     "& .fc-toolbar-title": {
       fontSize: `${size.lg} !important`,
       fontWeight: `${fontWeightBold} !important`,
-      color: darkMode ? white.main : dark.main,
+      color: dark.main,
     },
 
     "& .event-primary": {

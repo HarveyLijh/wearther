@@ -32,17 +32,17 @@ const colors = {
   },
 
   primary: {
-    main: "#e91e63",
-    focus: "#e91e63",
+    main: "#71B2FF",
+    focus: "#56A7F2",
   },
 
   secondary: {
-    main: "#7b809a",
-    focus: "#8f93a9",
+    main: "#104084",
+    focus: "#1A53A3",
   },
 
   info: {
-    main: "#56A7F2",
+    main: "#71B2FF",
     focus: "#1662C4",
   },
 
@@ -62,8 +62,8 @@ const colors = {
   },
 
   light: {
-    main: "#f0f2f566",
-    focus: "#f0f2f566",
+    main: "#f0f2f5",
+    focus: "#f0f2f5",
   },
 
   dark: {

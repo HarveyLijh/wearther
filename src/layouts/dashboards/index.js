@@ -1,11 +1,11 @@
 // Material Dashboard 2 PRO React examples
 import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
-import DashboardNavbar from "examples/Navbars/DashboardNavbar";
+import Calendar from "layouts/applications/calendar";
 
 function MainPage() {
   return (
     <DashboardLayout>
-      <DashboardNavbar />
+      <Calendar />
     </DashboardLayout>
   );
 }

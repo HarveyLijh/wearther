@@ -18,11 +18,11 @@ import MDTypography from "components/MDTypography";
 import CalendarRoot from "examples/Calendar/CalendarRoot";
 
 // Material Dashboard 2 PRO React context
-import { useMaterialUIController } from "context";
+// import { useMaterialUIController } from "context";
 
 function Calendar({ header, ...rest }) {
-  const [controller] = useMaterialUIController();
-  const { darkMode } = controller;
+  // const [controller] = useMaterialUIController();
+  // const { darkMode } = controller;
 
   const validClassNames = [
     "primary",
@@ -58,7 +58,7 @@ function Calendar({ header, ...rest }) {
           </MDTypography>
         ) : null}
       </MDBox>
-      <CalendarRoot p={2} ownerState={{ darkMode }}>
+      <CalendarRoot p={2}>
         <FullCalendar
           {...rest}
           plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
