@@ -13,10 +13,11 @@ function AuthProvider({ children }) {
     // If Session exist, Redirect to mainPage
     if (location.pathname === "/authentication/sign-in" && localStorage.getItem("token"))
       navigate("/mainpage");
-    if (!localStorage.getItem("token") && localStorage.getItem("signup"))
+    if (!localStorage.getItem("token") && localStorage.getItem("signup") === "true") {
       navigate("/authentication/sign-up");
+    }
     // If Session not exist, Redirect to Sign in
-    if (!localStorage.getItem("token") && !localStorage.getItem("signup"))
+    if (!localStorage.getItem("token") && localStorage.getItem("signup") === "false")
       navigate("/authentication/sign-in");
     // console.log(location);
   }, [location.pathname]);

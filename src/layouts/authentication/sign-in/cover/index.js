@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 // react-router-dom components
 import { useNavigate, Link } from "react-router-dom";
@@ -11,6 +11,7 @@ import MDBox from "components/MDBox";
 import MDTypography from "components/MDTypography";
 import MDInput from "components/MDInput";
 import MDButton from "components/MDButton";
+import MDSnackbar from "components/MDSnackbar";
 
 // Authentication layout components
 import CoverLayout from "layouts/authentication/components/CoverLayout";
@@ -27,9 +28,15 @@ function Cover() {
   const [msg, setMsg] = useState("");
   const [userid, setUserId] = useState("");
   const [password, setPassWord] = useState("");
-
+  const [show, setShow] = useState(localStorage.getItem("signup_completed") === "true");
   const navigate = useNavigate();
 
+  useEffect(() => {
+    // reset signup
+    localStorage.setItem("signup", false);
+  });
+
+  const toggleSnackbar = () => setShow(!show);
   const readySignUp = () => {
     localStorage.setItem("signup", true);
   };
@@ -73,15 +80,15 @@ function Cover() {
             Wearther
           </MDTypography>
           <MDTypography display="block" variant="button" color="white" my={1}>
-            Enter your email and password to Sign In
+            Enter your username and password to sign in
           </MDTypography>
         </MDBox>
         <MDBox pt={4} pb={3} px={3}>
           <MDBox component="form" role="form">
             <MDBox mb={2}>
               <MDInput
-                type="email"
-                label="Email"
+                type="text"
+                label="Username"
                 variant="standard"
                 fullWidth
                 placeholder="username"
@@ -131,6 +138,14 @@ function Cover() {
           </MDBox>
         </MDBox>
       </Card>
+      <MDSnackbar
+        color="success"
+        icon="notifications"
+        title="Wearther"
+        content="Register Success!"
+        open={show}
+        close={toggleSnackbar}
+      />
     </CoverLayout>
   );
 }

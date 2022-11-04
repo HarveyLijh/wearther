@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 // react-router-dom components
 import { useNavigate, Link } from "react-router-dom";
 
@@ -14,42 +14,55 @@ import MDButton from "components/MDButton";
 // Authentication layout components
 import CoverLayout from "layouts/authentication/components/CoverLayout";
 import signup from "api/signup";
-import { TAKEN_INFO_PROMPT, EMPTY_INFO_PROMPT } from "constant";
-// Context
-import { useMaterialUIController, setUserName } from "context";
+import { EMAIL_INVALID_PROMPT, TAKEN_INFO_PROMPT, EMPTY_INFO_PROMPT } from "constant";
 
 // Images
 import bgImage from "assets/images/bg-sign-in-basic.jpeg";
 
 function Cover() {
-  const [controller, dispatch] = useMaterialUIController();
   const [msg, setMsg] = useState("");
   const [userid, setUserId] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassWord] = useState("");
 
+  useEffect(() => {
+    // reset signup
+    localStorage.setItem("signup_completed", false);
+  });
   const navigate = useNavigate();
   const readySignIn = () => {
     localStorage.removeItem("signup");
   };
+
+  const isValidEmail = (emailVal) => {
+    const emailCheckRE = /\S+@\S+\.\S+/;
+    return emailCheckRE.test(emailVal);
+  };
+
+  const handleEmail = (value) => {
+    if (!isValidEmail(value)) {
+      setMsg(EMAIL_INVALID_PROMPT);
+    } else {
+      setMsg("");
+      setEmail(value);
+    }
+  };
+
   const handleSignUp = async () => {
     if (userid === "" || password === "" || email === "") {
       setMsg(EMPTY_INFO_PROMPT);
       return;
     }
+    setMsg("");
     const data = await signup(userid, email, password);
-    console.log(data);
-    // Login Success
-    if (data.message === "AUTHENTICATED SUCCESFULLY") {
-      // localStorage.setItem("token", data.user.token);
-      // localStorage.setItem("username", data.user.username);
-      // Set Current UserName
-      if (controller.username !== data.user.username) {
-        setUserName(dispatch, data.user.username);
-      }
-      navigate("/mainpage");
+    // signup Success
+    if (data.message === "REGISTERED SUCCESFULLY") {
+      console.log(data);
+      localStorage.setItem("signup_completed", "true");
+      localStorage.setItem("signup", false);
+      navigate("/authentication/sign-in");
     }
-    // Login Failed
+    // signup Failed
     else {
       setMsg(TAKEN_INFO_PROMPT);
     }
@@ -72,7 +85,7 @@ function Cover() {
             Wearther
           </MDTypography>
           <MDTypography display="block" variant="button" color="white" my={1}>
-            Enter your email and password to register
+            Enter your username, email, and password to register
           </MDTypography>
         </MDBox>
         <MDBox pt={4} pb={3} px={3}>
@@ -80,7 +93,7 @@ function Cover() {
             <MDBox mb={2}>
               <MDInput
                 type="text"
-                label="Name"
+                label="Username"
                 variant="standard"
                 fullWidth
                 text={userid}
@@ -94,7 +107,7 @@ function Cover() {
                 variant="standard"
                 text={email}
                 fullWidth
-                onChange={(e) => setEmail(e.target.value)}
+                onChange={(e) => handleEmail(e.target.value)}
               />
             </MDBox>
             <MDBox mb={2}>
@@ -108,7 +121,7 @@ function Cover() {
               />
             </MDBox>
             {msg !== "" && (
-              <MDTypography color="primary" size="small" fontWeight="regular">
+              <MDTypography color="error" variant="body2" fontWeight="regular">
                 {msg}
               </MDTypography>
             )}
