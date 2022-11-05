@@ -5,7 +5,7 @@ import { styled } from "@mui/material/styles";
 export default styled(Box)(({ theme }) => {
   const { palette, typography, functions, boxShadows } = theme;
 
-  const { white, dark, light, grey, gradients, info } = palette;
+  const { white, dark, gradients, info, transparent } = palette;
   const { size, fontWeightMedium, fontWeightBold, fontWeightRegular, fontWeightLight } = typography;
   const { linearGradient, pxToRem } = functions;
   const { md } = boxShadows;
@@ -15,20 +15,22 @@ export default styled(Box)(({ theme }) => {
 
     "& .fc-media-screen": {
       height: "100%",
-      color: dark.main,
+      backgroundColor: transparent.main,
     },
 
     "& .fc-theme-standard .fc-scrollgrid": {
       border: "none",
+      backgroundColor: transparent.main,
     },
 
     "& .fc-theme-standard thead tr th": {
       borderLeft: "none",
       borderRight: "none",
+      border: transparent.main,
     },
 
     "& .fc-theme-standard td, .fc-theme-standard th": {
-      borderColor: light.main,
+      border: transparent.main,
     },
 
     "& .fc th": {
@@ -38,15 +40,16 @@ export default styled(Box)(({ theme }) => {
     "& .fc .fc-col-header-cell-cushion": {
       fontSize: size.sm,
       fontWeight: fontWeightMedium,
-      color: grey[500],
+      color: white.main, // header color
     },
 
     "& .fc .fc-daygrid-day-number": {
-      color: grey[700],
+      color: white.main,
       fontSize: size.sm,
       fontWeight: fontWeightLight,
       width: "100%",
       textAlign: "center",
+      alignItems: "center",
     },
 
     "& .fc-scrollgrid-section.fc-scrollgrid-section-header > td": {
@@ -111,7 +114,7 @@ export default styled(Box)(({ theme }) => {
     "& .fc-toolbar-title": {
       fontSize: `${size.lg} !important`,
       fontWeight: `${fontWeightBold} !important`,
-      color: dark.main,
+      color: white.main,
     },
 
     "& .event-primary": {
