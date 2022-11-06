@@ -4,16 +4,12 @@ import Weather from "layouts/applications/weather";
 import Recommend from "layouts/applications/recommend";
 import Grid from "@mui/material/Grid";
 import DashboardNavbar from "examples/Navbars/DashboardNavbar";
-import { useState, useEffect } from "react";
 
 function MainPage() {
-  const [currTime, setCurrTime] = useState(new Date().toLocaleString());
-  useEffect(() => {
-    const time = new Date().toLocaleString().split(",")[1];
-    const offset = time.split(" ")[2] === "PM" ? 12 : 0;
-    const hour = parseInt(time.split(":")[0], 10) + offset;
-    setCurrTime(hour);
-  });
+  const date = new Date();
+  const time = date.toLocaleString().split(",")[1];
+  const offset = time.split(" ")[2] === "PM" ? 12 : 0;
+  const currTime = parseInt(time.split(":")[0], 10) + offset;
   let rootStyle = {
     flexGrow: 1,
     background: "linear-gradient(to right bottom, #ABD7FF, #1C8CF2)",
@@ -30,7 +26,7 @@ function MainPage() {
       <DashboardNavbar />
       <Grid container p={5} spacing={3} alignItems="center" justify="center">
         <Grid item xs={12} sm={12} md={12} lg={4} xl={4}>
-          <Calendar />
+          <Calendar today={date} />
         </Grid>
         <Grid item xs={12} sm={12} md={12} lg={4} xl={4}>
           <Weather />

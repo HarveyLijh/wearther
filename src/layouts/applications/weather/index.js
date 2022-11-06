@@ -53,7 +53,7 @@ function Weather() {
           <WeatherCard
             image="https://bit.ly/3Hlw1MQ"
             weather={weather?.weather}
-            temperature={`${weather?.temperature} °C`}
+            temperature={`${weather?.temperature}°C`}
           />
         </Grid>
         <Grid item xs={12}>
