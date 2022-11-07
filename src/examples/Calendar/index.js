@@ -12,14 +12,11 @@ import Card from "@mui/material/Card";
 
 // Custom styles for Calendar
 import CalendarRoot from "examples/Calendar/CalendarRoot";
-
 // Material Dashboard 2 PRO React context
 // import { useMaterialUIController } from "context";
-
-function Calendar({ header, ...rest }) {
+function Calendar({ header, setDate, ...rest }) {
   // const [controller] = useMaterialUIController();
   // const { darkMode } = controller;
-
   const validClassNames = [
     "primary",
     "secondary",
@@ -47,6 +44,7 @@ function Calendar({ header, ...rest }) {
           {...rest}
           plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
           events={events}
+          eventClick={setDate}
           height="100%"
         />
       </CalendarRoot>
@@ -68,6 +66,7 @@ Calendar.propTypes = {
     title: PropTypes.string,
     date: PropTypes.string,
   }),
+  setDate: PropTypes.func.isRequired,
 };
 
 export default Calendar;

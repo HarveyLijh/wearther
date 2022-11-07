@@ -82,7 +82,7 @@ export default styled(Box)(({ theme }) => {
     },
 
     "& .fc .fc-daygrid-body-unbalanced .fc-daygrid-day-events": {
-      minHeight: pxToRem(32),
+      minHeight: pxToRem(20),
     },
 
     "& .fc-event-title": {
