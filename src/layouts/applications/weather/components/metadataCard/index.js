@@ -12,61 +12,31 @@ function MetadataCard({ precipitationChance, wind, humidity }) {
   const precipitationIcon = "water_drop";
   return (
     <MDBox>
-      <Card>
+      <Card sx={{ backgroundColor: "dark.main", color: "white" }}>
         <Grid container p={2} spacing={3} alignItems="center" justify="center">
           <Grid item xs={4}>
-            <MDBox p={3}>
-              <MDBox
-                display="grid"
-                justifyContent="center"
-                alignItems="center"
-                color="primary"
-                width="4rem"
-                height="4rem"
-                variant="gradient"
-              >
-                <Icon fontSize="default">{precipitationIcon}</Icon>
-              </MDBox>
-              <MDTypography display="inline" variant="h3" fontWeight="bold">
-                {precipitationChance} %
-              </MDTypography>
-            </MDBox>
+            <Icon color="primary" fontSize="default">
+              {precipitationIcon}
+            </Icon>
+            <MDTypography color="white" display="inline" variant="body1" fontWeight="regular">
+              {precipitationChance} %
+            </MDTypography>
           </Grid>
           <Grid item xs={4}>
-            <MDBox p={3}>
-              <MDBox
-                display="grid"
-                justifyContent="center"
-                alignItems="center"
-                color="primary"
-                width="4rem"
-                height="4rem"
-                variant="gradient"
-              >
-                <Icon fontSize="default">{windIcon}</Icon>
-              </MDBox>
-              <MDTypography display="inline" variant="h3" fontWeight="bold">
-                {wind} km/h
-              </MDTypography>
-            </MDBox>
+            <Icon color="primary" fontSize="default">
+              {windIcon}
+            </Icon>
+            <MDTypography color="white" display="inline" variant="body1" fontWeight="regular">
+              {wind} km/h
+            </MDTypography>
           </Grid>
           <Grid item xs={4}>
-            <MDBox p={3}>
-              <MDBox
-                display="grid"
-                justifyContent="center"
-                alignItems="center"
-                color="primary"
-                width="4rem"
-                height="4rem"
-                variant="gradient"
-              >
-                <Icon fontSize="default">{humidityIcon}</Icon>
-              </MDBox>
-              <MDTypography display="inline" variant="h3" fontWeight="bold">
-                {humidity} %
-              </MDTypography>
-            </MDBox>
+            <Icon color="primary" fontSize="default">
+              {humidityIcon}
+            </Icon>
+            <MDTypography color="white" display="inline" variant="body1" fontWeight="regular">
+              {humidity} %
+            </MDTypography>
           </Grid>
         </Grid>
       </Card>

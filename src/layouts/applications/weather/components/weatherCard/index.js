@@ -8,7 +8,7 @@ import PropTypes from "prop-types";
 function WeatherCard({ image, weather, temperature }) {
   return (
     <MDBox>
-      <Card>
+      <Card sx={{ backgroundColor: "dark.main", color: "white" }}>
         <Grid container p={2} spacing={3} alignItems="center" justify="center">
           <Grid item xs={12}>
             <MDBox position="relative" borderRadius="lg">
@@ -28,6 +28,7 @@ function WeatherCard({ image, weather, temperature }) {
           <Grid item xs={12}>
             <MDBox p={3}>
               <MDTypography
+                color="white"
                 display="inline"
                 variant="h3"
                 textTransform="capitalize"
@@ -39,7 +40,7 @@ function WeatherCard({ image, weather, temperature }) {
           </Grid>
           <Grid item xs={12}>
             <MDBox p={3}>
-              <MDTypography display="inline" variant="h3" fontWeight="bold">
+              <MDTypography color="white" display="inline" variant="h3" fontWeight="bold">
                 {temperature}
               </MDTypography>
             </MDBox>
