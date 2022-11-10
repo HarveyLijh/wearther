@@ -90,7 +90,12 @@ function DashboardNavbar({ absolute, light, isMini }) {
             <MDBox mb={1} lineHeight={0}>
               <MDTypography variant="caption" fontWeight="regular" color="text">
                 Current User:&nbsp;&nbsp;&nbsp;
-                <MDTypography variant="caption" fontWeight="medium" textTransform="capitalize">
+                <MDTypography
+                  color="white"
+                  variant="caption"
+                  fontWeight="medium"
+                  textTransform="capitalize"
+                >
                   {localStorage.getItem("username")}
                 </MDTypography>
               </MDTypography>

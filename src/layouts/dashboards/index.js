@@ -18,7 +18,7 @@ function MainPage() {
   if (currTime >= 18) {
     rootStyle = {
       flexGrow: 1,
-      background: "linear-gradient(to right bottom, #062452, #286FC3)",
+      background: "linear-gradient(to right bottom, #001330, #286FC3)",
     };
   }
   return (

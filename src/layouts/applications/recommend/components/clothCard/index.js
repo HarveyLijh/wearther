@@ -8,7 +8,7 @@ import PropTypes from "prop-types";
 function ClothCard({ image, clothName }) {
   return (
     <MDBox>
-      <Card>
+      <Card sx={{ backgroundColor: "dark.main", color: "white" }}>
         <Grid container p={2} spacing={3} alignItems="center" justify="center">
           <Grid item xs={5}>
             <MDBox position="relative" borderRadius="lg">
@@ -26,12 +26,13 @@ function ClothCard({ image, clothName }) {
             </MDBox>
           </Grid>
           <Grid item xs={7}>
-            <MDBox p={3}>
+            <MDBox mt={-5} p={3}>
               <MDTypography
+                color="white"
                 display="inline"
                 variant="h3"
                 textTransform="capitalize"
-                fontWeight="bold"
+                fontWeight="regular"
               >
                 {clothName}
               </MDTypography>

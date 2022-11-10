@@ -9,8 +9,8 @@ import WeatherCard from "./components/weatherCard";
 function Weather() {
   const title = "weather";
 
-  const [location, setLocation] = useState();
-  const [weather, setWeather] = useState();
+  const [location, setLocation] = useState("unavailable");
+  const [weather, setWeather] = useState("unavailable");
 
   useEffect(() => {
     const { geolocation } = navigator;
@@ -34,13 +34,14 @@ function Weather() {
     if (!location) return;
 
     fetchWeather(location.latitude, location.longitude).then((res) => {
+      console.log(res);
       const { rain, description, temp, speed } = res;
       setWeather({
         precipitationChance: rain === "N/A" ? 0 : rain,
         weather: description,
         temperature: temp,
         wind: speed,
-        humidity: -1,
+        humidity: 0,
       });
     });
   }, [location]);
