@@ -5,7 +5,7 @@ import Grid from "@mui/material/Grid";
 import MDTypography from "components/MDTypography";
 import PropTypes from "prop-types";
 
-function ClothCard({ image, clothName }) {
+function ClothCard({ item }) {
   return (
     <MDBox>
       <Card sx={{ backgroundColor: "dark.main", color: "white" }}>
@@ -14,8 +14,8 @@ function ClothCard({ image, clothName }) {
             <MDBox position="relative" borderRadius="lg">
               <MDBox
                 component="img"
-                src={image}
-                alt={clothName}
+                src={item.image}
+                alt={item.clothName}
                 borderRadius="lg"
                 shadow="md"
                 width="100%"
@@ -34,7 +34,7 @@ function ClothCard({ image, clothName }) {
                 textTransform="capitalize"
                 fontWeight="regular"
               >
-                {clothName}
+                {item.clothName}
               </MDTypography>
             </MDBox>
           </Grid>
@@ -45,8 +45,10 @@ function ClothCard({ image, clothName }) {
 }
 
 ClothCard.propTypes = {
-  image: PropTypes.string.isRequired,
-  clothName: PropTypes.string.isRequired,
+  item: PropTypes.shape({
+    image: PropTypes.string.isRequired,
+    clothName: PropTypes.string.isRequired,
+  }).isRequired,
 };
 
 export default ClothCard;

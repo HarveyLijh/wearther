@@ -24,7 +24,7 @@ function MainPage() {
   return (
     <div style={rootStyle}>
       <DashboardNavbar />
-      <Grid container p={5} spacing={3} alignItems="center" justify="center">
+      <Grid container pl={5} pr={5} sspacing={3} alignItems="center" justify="center">
         <Grid item xs={12} sm={12} md={12} lg={4} xl={4}>
           <Calendar today={date} />
         </Grid>
