@@ -7,7 +7,7 @@ import MetadataCard from "./components/metadataCard";
 import WeatherCard from "./components/weatherCard";
 
 function Weather() {
-  const title = "weather";
+  const title = "Weather";
 
   const [location, setLocation] = useState("unavailable");
   const [weather, setWeather] = useState("unavailable");
@@ -35,26 +35,30 @@ function Weather() {
 
     fetchWeather(location.latitude, location.longitude).then((res) => {
       console.log(res);
-      const { rain, description, temp, speed } = res;
+      const { rain, description, temp, speed, temp_min, temp_max } = res;
       setWeather({
         precipitationChance: rain === "N/A" ? 0 : rain,
         weather: description,
-        temperature: temp,
+        minTemp: Math.round(temp_min),
+        maxTemp: Math.round(temp_max),
+        temperature: Math.round(temp),
         wind: speed,
         humidity: 0,
       });
     });
-  }, [location]);
+  }, [location.latitude, location.longitude]);
 
   return (
-    <MDBox>
+    <MDBox color="white">
       {title}
       <Grid container p={2} spacing={3} alignItems="center" justify="center">
         <Grid item xs={12}>
           <WeatherCard
             image="https://bit.ly/3Hlw1MQ"
             weather={weather?.weather}
-            temperature={`${weather?.temperature}°C`}
+            temperature={weather?.temperature}
+            minTemp={weather?.minTemp}
+            maxTemp={weather?.maxTemp}
           />
         </Grid>
         <Grid item xs={12}>

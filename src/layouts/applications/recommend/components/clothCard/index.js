@@ -18,8 +18,7 @@ function ClothCard({ item }) {
                 alt={item.clothName}
                 borderRadius="lg"
                 shadow="md"
-                width="100%"
-                height="100%"
+                width="80%"
                 position="relative"
                 zIndex={1}
               />

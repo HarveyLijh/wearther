@@ -5,38 +5,46 @@ import Grid from "@mui/material/Grid";
 import MDTypography from "components/MDTypography";
 import PropTypes from "prop-types";
 
-function WeatherCard({ image, weather, temperature }) {
+function WeatherCard({ image, weather, temperature, maxTemp, minTemp }) {
   return (
     <MDBox>
       <Grid container p={2} spacing={3} alignItems="center" justify="center">
         <Grid item xs={12}>
-          <MDBox position="relative" borderRadius="lg">
+          <MDBox position="relative" borderRadius="lg" textAlign="center">
             <MDBox
               component="img"
               src={image}
               alt={weather}
               borderRadius="lg"
               shadow="md"
-              width="100%"
-              height="100%"
+              width="40%"
               position="relative"
               zIndex={1}
             />
           </MDBox>
         </Grid>
+
         <Grid item xs={12}>
-          <MDBox p={3} textAlign="center">
-            <MDTypography color="white" variant="h3" textTransform="capitalize" fontWeight="bold">
-              {weather}
+          <MDBox p={2} textAlign="center">
+            <MDTypography color="white" display="inline" variant="h1" fontWeight="bold">
+              {temperature}°C
             </MDTypography>
           </MDBox>
         </Grid>
-        <Grid item xs={12}>
-          <MDBox p={3} textAlign="center">
-            <MDTypography color="white" display="inline" variant="h3" fontWeight="bold">
-              {temperature}
-            </MDTypography>
-          </MDBox>
+        <Grid mt={-3} item xs={12} textAlign="center">
+          <MDTypography
+            color="white"
+            variant="body1"
+            textTransform="capitalize"
+            fontWeight="regular"
+          >
+            {weather}
+          </MDTypography>
+        </Grid>
+        <Grid mt={-3} item xs={12} textAlign="center">
+          <MDTypography color="white" variant="body1" fontWeight="regular">
+            Max: {maxTemp}°C Min: {minTemp}°C
+          </MDTypography>
         </Grid>
       </Grid>
     </MDBox>
@@ -46,7 +54,9 @@ function WeatherCard({ image, weather, temperature }) {
 WeatherCard.propTypes = {
   image: PropTypes.string.isRequired,
   weather: PropTypes.string.isRequired,
-  temperature: PropTypes.string.isRequired,
+  temperature: PropTypes.number.isRequired,
+  maxTemp: PropTypes.number.isRequired,
+  minTemp: PropTypes.number.isRequired,
 };
 
 export default WeatherCard;

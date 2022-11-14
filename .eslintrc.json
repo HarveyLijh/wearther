@@ -13,6 +13,7 @@
   },
   "plugins": ["react", "prettier"],
   "rules": {
+    "camelcase": "off",
     "prettier/prettier": [
       "error",
       {

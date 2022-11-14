@@ -57,7 +57,7 @@ function Cover() {
     const data = await signup(userid, email, password);
     // signup Success
     if (data.message === "REGISTERED SUCCESFULLY") {
-      console.log(data);
+      // console.log(data);
       localStorage.setItem("signup_completed", "true");
       localStorage.setItem("signup", false);
       navigate("/authentication/sign-in");

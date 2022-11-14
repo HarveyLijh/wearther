@@ -5,7 +5,6 @@ import PropTypes from "prop-types";
 import Grid from "@mui/material/Grid";
 import EventCalendar from "examples/Calendar";
 import MDBox from "components/MDBox";
-import MDTypography from "components/MDTypography";
 import DateWeatherCard from "./components/dateWeatherCard";
 // Data
 import calendarEventsData from "./data/calendarEventsData";
@@ -22,10 +21,8 @@ function Calendar({ today }) {
   const [dateWeather, setDateWeather] = useState({});
   console.log(dateWeather);
   return (
-    <MDBox textAlign="center">
-      <MDTypography color="white" display="inline" variant="h2" fontWeight="regular">
-        {title}
-      </MDTypography>
+    <MDBox color="white">
+      {title}
       <Grid container p={2} spacing={3} alignItems="center" justify="center" textAlign="left">
         <Grid item xs={12}>
           {useMemo(

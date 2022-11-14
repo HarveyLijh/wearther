@@ -4,10 +4,13 @@ import Carousel from "react-material-ui-carousel";
 import ClothCard from "./components/clothCard";
 
 function Recommend() {
-  const title = "recommend";
+  const title = "Recommend";
+  const xsHeight = "100px";
+  const lgHeight = "160px";
   const styles = {
     indicatorBtn: {
-      fontSize: "18px",
+      fontSize: "16px",
+      color: "dark.main",
     },
   };
   const items = [
@@ -21,16 +24,17 @@ function Recommend() {
     },
   ];
   return (
-    <MDBox>
+    <MDBox color="white">
       {title}
       <Grid container p={2} spacing={3} alignItems="center" justify="center">
         <Grid item xs={12}>
+          Optional Top
           <Carousel
             indicatorIconButtonProps={{ style: styles.indicatorBtn }}
             autoPlay={false}
             swipe={false}
-            s={{ height: "120px" }}
-            lg={{ height: "180px" }}
+            s={{ height: xsHeight }}
+            lg={{ height: lgHeight }}
           >
             {items.map((item, i) => (
               <ClothCard key={Math.random(i)} item={item} />
@@ -38,12 +42,13 @@ function Recommend() {
           </Carousel>
         </Grid>
         <Grid item xs={12}>
+          Top
           <Carousel
             indicatorIconButtonProps={{ style: styles.indicatorBtn }}
             autoPlay={false}
             swipe={false}
-            s={{ height: "120px" }}
-            lg={{ height: "180px" }}
+            s={{ height: xsHeight }}
+            lg={{ height: lgHeight }}
           >
             {items.map((item, i) => (
               <ClothCard key={Math.random(i)} item={item} />
@@ -51,12 +56,13 @@ function Recommend() {
           </Carousel>
         </Grid>
         <Grid item xs={12}>
+          Bottom
           <Carousel
             indicatorIconButtonProps={{ style: styles.indicatorBtn }}
             autoPlay={false}
             swipe={false}
-            s={{ height: "120px" }}
-            lg={{ height: "180px" }}
+            s={{ height: xsHeight }}
+            lg={{ height: lgHeight }}
           >
             {items.map((item, i) => (
               <ClothCard key={Math.random(i)} item={item} />
