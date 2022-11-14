@@ -9,15 +9,13 @@ function ClothCard({ item }) {
   return (
     <MDBox>
       <Card sx={{ backgroundColor: "dark.main", color: "white" }}>
-        <Grid container p={2} spacing={3} alignItems="center" justify="center">
+        <Grid container p={5} spacing={3} alignItems="center" justify="center">
           <Grid item xs={5}>
             <MDBox position="relative" borderRadius="lg">
               <MDBox
                 component="img"
-                src={item.image}
-                alt={item.clothName}
-                borderRadius="lg"
-                shadow="md"
+                src={item.picture}
+                alt={item.model}
                 width="80%"
                 position="relative"
                 zIndex={1}
@@ -33,7 +31,7 @@ function ClothCard({ item }) {
                 textTransform="capitalize"
                 fontWeight="regular"
               >
-                {item.clothName}
+                {item.model}
               </MDTypography>
             </MDBox>
           </Grid>
@@ -45,8 +43,8 @@ function ClothCard({ item }) {
 
 ClothCard.propTypes = {
   item: PropTypes.shape({
-    image: PropTypes.string.isRequired,
-    clothName: PropTypes.string.isRequired,
+    picture: PropTypes.string.isRequired,
+    model: PropTypes.string.isRequired,
   }).isRequired,
 };
 

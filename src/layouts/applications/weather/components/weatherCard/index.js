@@ -15,9 +15,7 @@ function WeatherCard({ image, weather, temperature, maxTemp, minTemp }) {
               component="img"
               src={image}
               alt={weather}
-              borderRadius="lg"
-              shadow="md"
-              width="40%"
+              width="30%"
               position="relative"
               zIndex={1}
             />

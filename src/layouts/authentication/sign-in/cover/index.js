@@ -46,7 +46,7 @@ function Cover() {
       return;
     }
     const data = await login(userid, password);
-    // console.log(data);
+    console.log(data);
     // Login Success
     if (data.message === "AUTHENTICATED SUCCESFULLY") {
       localStorage.setItem("token", data.user.token);

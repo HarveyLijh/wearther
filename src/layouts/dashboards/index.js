@@ -11,12 +11,14 @@ function MainPage() {
   const offset = time.split(" ")[2] === "PM" ? 12 : 0;
   const currTime = parseInt(time.split(":")[0], 10) + offset;
   let rootStyle = {
+    height: "100vh",
     flexGrow: 1,
     background: "linear-gradient(to right bottom, #ABD7FF, #1C8CF2)",
   };
 
   if (currTime >= 18) {
     rootStyle = {
+      height: "100vh",
       flexGrow: 1,
       background: "linear-gradient(to right bottom, #001330, #286FC3)",
     };

@@ -45,8 +45,9 @@ function Weather() {
         wind: speed,
         humidity: 0,
       });
+      localStorage.setItem("temperature", JSON.stringify(Math.round(temp)));
     });
-  }, [location.latitude, location.longitude]);
+  }, [Math.round(location.latitude), Math.round(location.longitude)]);
 
   return (
     <MDBox color="white">
@@ -54,7 +55,7 @@ function Weather() {
       <Grid container p={2} spacing={3} alignItems="center" justify="center">
         <Grid item xs={12}>
           <WeatherCard
-            image="https://bit.ly/3Hlw1MQ"
+            image="https://objectstorage.us-sanjose-1.oraclecloud.com/n/axnn9qlbs3vq/b/COEN241/o/clear-sky.svg "
             weather={weather?.weather}
             temperature={weather?.temperature}
             minTemp={weather?.minTemp}

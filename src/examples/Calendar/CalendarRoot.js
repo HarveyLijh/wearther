@@ -50,6 +50,7 @@ export default styled(Box)(({ theme }) => {
       width: "100%",
       textAlign: "center",
       alignItems: "center",
+      maxHeight: pxToRem(20),
     },
 
     "& .fc-scrollgrid-section.fc-scrollgrid-section-header > td": {
@@ -82,7 +83,7 @@ export default styled(Box)(({ theme }) => {
     },
 
     "& .fc .fc-daygrid-body-unbalanced .fc-daygrid-day-events": {
-      minHeight: pxToRem(20),
+      minHeight: pxToRem(30),
     },
 
     "& .fc-event-title": {
