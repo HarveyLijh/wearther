@@ -11,7 +11,7 @@ import {
   THUNDERSTORM,
   SNOW,
   MIST,
-} from "constant/imgMatching";
+} from "constant/weatherMatching";
 import { useEffect, useState } from "react";
 import fetchWeather from "api/fetch_weather";
 import MetadataCard from "./components/metadataCard";
