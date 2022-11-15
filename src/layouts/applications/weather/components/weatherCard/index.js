@@ -10,7 +10,14 @@ function WeatherCard({ image, weather, temperature, maxTemp, minTemp }) {
     <MDBox>
       <Grid container p={2} spacing={3} alignItems="center" justify="center">
         <Grid item xs={12}>
-          <MDBox position="relative" borderRadius="lg" textAlign="center">
+          <MDBox
+            alignItems="center"
+            justify="center"
+            position="relative"
+            borderRadius="lg"
+            textAlign="center"
+            height="90px"
+          >
             <MDBox
               component="img"
               src={image}

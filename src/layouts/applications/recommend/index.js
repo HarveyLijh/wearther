@@ -31,7 +31,6 @@ function Recommend() {
     if (temperature !== "unavailable") return;
     // const temperature = localStorage.getItem("temperature");
     fetchRecommendation(11).then((res) => {
-      console.log(res);
       setBottomItems(res[0].bottom);
       setTopItems(res[1].top_must);
       setTopOptionalItems(res[2].top_optional_1);
