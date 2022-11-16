@@ -16,7 +16,7 @@ function WeatherCard({ image, weather, temperature, maxTemp, minTemp }) {
             position="relative"
             borderRadius="lg"
             textAlign="center"
-            height="90px"
+            minHeight="150px"
           >
             <MDBox
               component="img"

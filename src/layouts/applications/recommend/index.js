@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import MDBox from "components/MDBox";
 import Grid from "@mui/material/Grid";
 import fetchRecommendation from "api/recommend";
-import Carousel from "react-material-ui-carousel";
 import ClothCard from "./components/clothCard";
 
 function Recommend() {
@@ -37,13 +36,6 @@ function Recommend() {
     });
   }, [temperature]);
   const title = "Recommend";
-  const styles = {
-    indicatorBtn: {
-      marginTop: "15px",
-      fontSize: "16px",
-      color: "dark.main",
-    },
-  };
   return (
     <MDBox color="white">
       {title}
@@ -51,40 +43,16 @@ function Recommend() {
         {topOptionalItems.length > 0 && (
           <Grid item xs={12}>
             Optional Top
-            <Carousel
-              indicatorIconButtonProps={{ style: styles.indicatorBtn }}
-              autoPlay={false}
-              swipe={false}
-            >
-              {topOptionalItems.map((item, i) => (
-                <ClothCard key={Math.random(i)} item={item} />
-              ))}
-            </Carousel>
+            <ClothCard items={topOptionalItems} />
           </Grid>
         )}
         <Grid item xs={12}>
           Top
-          <Carousel
-            indicatorIconButtonProps={{ style: styles.indicatorBtn }}
-            autoPlay={false}
-            swipe={false}
-          >
-            {topItems.map((item, i) => (
-              <ClothCard key={Math.random(i)} item={item} />
-            ))}
-          </Carousel>
+          <ClothCard items={topItems} />
         </Grid>
         <Grid item xs={12}>
           Bottom
-          <Carousel
-            indicatorIconButtonProps={{ style: styles.indicatorBtn }}
-            autoPlay={false}
-            swipe={false}
-          >
-            {bottomItems.map((item, i) => (
-              <ClothCard key={Math.random(i)} item={item} />
-            ))}
-          </Carousel>
+          <ClothCard items={bottomItems} />
         </Grid>
       </Grid>
     </MDBox>
