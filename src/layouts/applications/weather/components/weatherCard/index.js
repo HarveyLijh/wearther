@@ -5,7 +5,7 @@ import Grid from "@mui/material/Grid";
 import MDTypography from "components/MDTypography";
 import PropTypes from "prop-types";
 
-function WeatherCard({ image, weather, temperature, maxTemp, minTemp }) {
+function WeatherCard({ image, weather, feelslike, temperature, maxTemp, minTemp }) {
   return (
     <MDBox>
       <Grid container p={2} spacing={3} alignItems="center" justify="center">
@@ -50,18 +50,30 @@ function WeatherCard({ image, weather, temperature, maxTemp, minTemp }) {
           <MDTypography color="white" variant="body1" fontWeight="regular">
             Max: {maxTemp}°C Min: {minTemp}°C
           </MDTypography>
+          <MDTypography color="white" variant="body1" fontWeight="regular">
+            Feels like: {feelslike}°C
+          </MDTypography>
         </Grid>
       </Grid>
     </MDBox>
   );
 }
 
+WeatherCard.defaultProps = {
+  image: "N/A",
+  weather: "N/A",
+  temperature: 0,
+  maxTemp: 0,
+  minTemp: 0,
+  feelslike: 0,
+};
 WeatherCard.propTypes = {
-  image: PropTypes.string.isRequired,
-  weather: PropTypes.string.isRequired,
-  temperature: PropTypes.number.isRequired,
-  maxTemp: PropTypes.number.isRequired,
-  minTemp: PropTypes.number.isRequired,
+  image: PropTypes.string,
+  weather: PropTypes.string,
+  temperature: PropTypes.number,
+  maxTemp: PropTypes.number,
+  minTemp: PropTypes.number,
+  feelslike: PropTypes.number,
 };
 
 export default WeatherCard;

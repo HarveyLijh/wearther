@@ -19,7 +19,7 @@ function Calendar({ today }) {
   const [date, setDate] = useState(today);
   const [clothings, setClothings] = useState(["shirt", "shorts"]);
   const [dateWeather, setDateWeather] = useState({});
-  console.log(dateWeather);
+  console.log("dateWeather", dateWeather);
   return (
     <MDBox color="white">
       {title}

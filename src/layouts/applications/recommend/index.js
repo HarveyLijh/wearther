@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
+import PropTypes from "prop-types";
 import MDBox from "components/MDBox";
 import Grid from "@mui/material/Grid";
 import fetchRecommendation from "api/recommend";
+import fetchWeather from "api/fetch_weather";
 import ClothCard from "./components/clothCard";
 
-function Recommend() {
+function Recommend({ latitude, longitude }) {
   const [topItems, setTopItems] = useState([
     {
       clothName: "Shirt",
@@ -21,20 +23,19 @@ function Recommend() {
   ]);
 
   const [topOptionalItems, setTopOptionalItems] = useState([]);
-  const [temperature, setTempature] = useState("unavailable");
   useEffect(() => {
-    if (!localStorage.getItem("temperature")) return;
-    setTempature(JSON.parse(localStorage.getItem("temperature")));
-  });
-  useEffect(() => {
-    if (temperature !== "unavailable") return;
-    // const temperature = localStorage.getItem("temperature");
-    fetchRecommendation(11).then((res) => {
-      setBottomItems(res[0].bottom);
-      setTopItems(res[1].top_must);
-      setTopOptionalItems(res[2].top_optional_1);
+    if (!latitude || !longitude) return;
+    console.log("A");
+
+    fetchWeather(latitude, longitude).then((resw) => {
+      fetchRecommendation().then((res) => {
+        console.log(resw, res, latitude, longitude);
+        setBottomItems(res[0].bottom);
+        setTopItems(res[1].top_must);
+        setTopOptionalItems(res[2].top_optional_1);
+      });
     });
-  }, [temperature]);
+  }, [Math.round(latitude), Math.round(longitude)]);
   const title = "Recommend";
   return (
     <MDBox color="white">
@@ -58,5 +59,13 @@ function Recommend() {
     </MDBox>
   );
 }
+Recommend.defaultProps = {
+  latitude: 37.7749,
+  longitude: -122.4194,
+};
+Recommend.propTypes = {
+  latitude: PropTypes.number,
+  longitude: PropTypes.number,
+};
 
 export default Recommend;

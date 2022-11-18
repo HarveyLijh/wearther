@@ -1,4 +1,5 @@
 // Material Dashboard 2 PRO React examples
+import { useEffect, useState } from "react";
 import Calendar from "layouts/applications/calendar";
 import Weather from "layouts/applications/weather";
 import Recommend from "layouts/applications/recommend";
@@ -6,17 +7,34 @@ import Grid from "@mui/material/Grid";
 import DashboardNavbar from "examples/Navbars/DashboardNavbar";
 
 function MainPage() {
+  const [location, setLocation] = useState("unavailable");
+
+  useEffect(() => {
+    const { geolocation } = navigator;
+
+    // If the geolocation is not defined in the used browser we handle it as an error
+    if (!geolocation) {
+      return;
+    }
+
+    // Call Geolocation API
+    geolocation.getCurrentPosition((pos) => {
+      const { latitude, longitude } = pos.coords;
+      setLocation({
+        latitude,
+        longitude,
+      });
+    });
+  });
+
   const date = new Date();
-  const time = date.toLocaleString().split(",")[1];
-  const offset = time.split(" ")[2] === "PM" ? 12 : 0;
-  const currTime = parseInt(time.split(":")[0], 10) + offset;
+  const time = date.getHours();
   let rootStyle = {
     height: "100vh",
     flexGrow: 1,
     background: "linear-gradient(to right bottom, #ABD7FF, #1C8CF2)",
   };
-
-  if (currTime >= 18) {
+  if (time <= 6 || time >= 18) {
     rootStyle = {
       height: "100vh",
       flexGrow: 1,
@@ -31,10 +49,10 @@ function MainPage() {
           <Calendar today={date} />
         </Grid>
         <Grid item xs={12} sm={12} md={12} lg={4} xl={4}>
-          <Weather />
+          <Weather latitude={location.latitude} longitude={location.longitude} />
         </Grid>
         <Grid item xs={12} sm={12} md={12} lg={4} xl={4}>
-          <Recommend />
+          <Recommend latitude={location.latitude} longitude={location.longitude} />
         </Grid>
       </Grid>
     </div>

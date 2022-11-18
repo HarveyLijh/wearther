@@ -1,5 +1,6 @@
 import MDBox from "components/MDBox";
 import Grid from "@mui/material/Grid";
+import PropTypes from "prop-types";
 
 import {
   CLEAR_SKY,
@@ -17,35 +18,16 @@ import fetchWeather from "api/fetch_weather";
 import MetadataCard from "./components/metadataCard";
 import WeatherCard from "./components/weatherCard";
 
-function Weather() {
+function Weather({ latitude, longitude }) {
   const title = "Weather";
-
-  const [location, setLocation] = useState("unavailable");
   const [weather, setWeather] = useState("unavailable");
-
-  useEffect(() => {
-    const { geolocation } = navigator;
-
-    // If the geolocation is not defined in the used browser we handle it as an error
-    if (!geolocation) {
-      return;
-    }
-
-    // Call Geolocation API
-    geolocation.getCurrentPosition((pos) => {
-      const { latitude, longitude } = pos.coords;
-      setLocation({
-        latitude,
-        longitude,
-      });
-    });
-  });
-
   const getImage = (weatherVal) => {
     switch (weatherVal) {
       case "clear sky":
         return CLEAR_SKY;
       case "scattered clouds":
+        return SCATTERED_CLOUDS;
+      case "overcast clouds":
         return SCATTERED_CLOUDS;
       case "few clouds":
         return FEW_CLOUDS;
@@ -67,24 +49,24 @@ function Weather() {
   };
 
   useEffect(() => {
-    if (!location) return;
+    if (!latitude || !longitude) return;
 
-    fetchWeather(location.latitude, location.longitude).then((res) => {
-      console.log(res);
-      const { rain, description, temp, speed, temp_min, temp_max } = res;
+    fetchWeather(latitude, longitude).then((res) => {
+      // console.log(res);
+      const { rain, feels_like, humidity, description, temp, speed, temp_min, temp_max } = res;
       setWeather({
         precipitationChance: rain === "N/A" ? 0 : rain,
         weather: description,
         minTemp: Math.round(temp_min),
         maxTemp: Math.round(temp_max),
         temperature: Math.round(temp),
+        feelslike: Math.round(feels_like),
         image: getImage(description),
         wind: speed,
-        humidity: 0,
+        humidityVal: humidity,
       });
-      localStorage.setItem("temperature", JSON.stringify(Math.round(temp)));
     });
-  }, [Math.round(location.latitude), Math.round(location.longitude)]);
+  }, [Math.round(latitude), Math.round(longitude)]);
 
   return (
     <MDBox color="white">
@@ -97,18 +79,27 @@ function Weather() {
             temperature={weather?.temperature}
             minTemp={weather?.minTemp}
             maxTemp={weather?.maxTemp}
+            feelslike={weather?.feelslike}
           />
         </Grid>
         <Grid item xs={12}>
           <MetadataCard
             precipitationChance={weather?.precipitationChance}
             wind={weather?.wind}
-            humidity={weather?.humidity}
+            humidity={weather?.humidityVal}
           />
         </Grid>
       </Grid>
     </MDBox>
   );
 }
+Weather.defaultProps = {
+  latitude: 37.7749,
+  longitude: -122.4194,
+};
+Weather.propTypes = {
+  latitude: PropTypes.number,
+  longitude: PropTypes.number,
+};
 
 export default Weather;
