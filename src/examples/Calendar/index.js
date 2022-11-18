@@ -27,7 +27,7 @@ function Calendar({ header, setDate, ...rest }) {
     "light",
     "dark",
   ];
-
+  console.log("rest", rest);
   const events = rest.events
     ? rest.events.map((el) => ({
         ...el,
@@ -44,7 +44,7 @@ function Calendar({ header, setDate, ...rest }) {
           {...rest}
           plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
           events={events}
-          eventClick={setDate}
+          eventClick={(event) => setDate(event)}
           height="100%"
         />
       </CalendarRoot>

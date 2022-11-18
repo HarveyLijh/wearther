@@ -1,9 +1,9 @@
 import axios from "axios";
 import BASE_URL from "service";
 
-const fetchRecommendation = async () => {
+const fetchUsedDates = async () => {
   const res = await axios.post(
-    `${BASE_URL}/outfits/masterapi/getsuggestions/`,
+    `${BASE_URL}/outfits/masterapi/getsaveddates/`,
     {},
     {
       headers: {
@@ -15,4 +15,4 @@ const fetchRecommendation = async () => {
   return res.data;
 };
 
-export default fetchRecommendation;
+export default fetchUsedDates;

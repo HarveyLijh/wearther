@@ -2,51 +2,15 @@ import MDBox from "components/MDBox";
 import Grid from "@mui/material/Grid";
 import PropTypes from "prop-types";
 
-import {
-  CLEAR_SKY,
-  SCATTERED_CLOUDS,
-  FEW_CLOUDS,
-  BROKEN_CLOUDS,
-  SHOWER_RAIN,
-  RAIN,
-  THUNDERSTORM,
-  SNOW,
-  MIST,
-} from "constant/weatherMatching";
+import getImage from "constant/getWeatherImage";
 import { useEffect, useState } from "react";
-import fetchWeather from "api/fetch_weather";
+import fetchWeather from "api/weather";
 import MetadataCard from "./components/metadataCard";
 import WeatherCard from "./components/weatherCard";
 
 function Weather({ latitude, longitude }) {
   const title = "Weather";
   const [weather, setWeather] = useState("unavailable");
-  const getImage = (weatherVal) => {
-    switch (weatherVal) {
-      case "clear sky":
-        return CLEAR_SKY;
-      case "scattered clouds":
-        return SCATTERED_CLOUDS;
-      case "overcast clouds":
-        return SCATTERED_CLOUDS;
-      case "few clouds":
-        return FEW_CLOUDS;
-      case "broken clouds":
-        return BROKEN_CLOUDS;
-      case "shower rain":
-        return SHOWER_RAIN;
-      case "rain":
-        return RAIN;
-      case "thunderstorm":
-        return THUNDERSTORM;
-      case "snow":
-        return SNOW;
-      case "mist":
-        return MIST;
-      default:
-        return CLEAR_SKY;
-    }
-  };
 
   useEffect(() => {
     if (!latitude || !longitude) return;

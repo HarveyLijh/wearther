@@ -2,13 +2,14 @@
 import { useEffect, useState } from "react";
 import Calendar from "layouts/applications/calendar";
 import Weather from "layouts/applications/weather";
-import Recommend from "layouts/applications/recommend";
+// import Recommend from "layouts/applications/recommend";
 import Grid from "@mui/material/Grid";
 import DashboardNavbar from "examples/Navbars/DashboardNavbar";
+import fetchUsedDates from "api/usedDate";
 
 function MainPage() {
   const [location, setLocation] = useState("unavailable");
-
+  const [usedDateEvents, setUsedDateEvents] = useState([]);
   useEffect(() => {
     const { geolocation } = navigator;
 
@@ -27,6 +28,20 @@ function MainPage() {
     });
   });
 
+  // process used dates data into calendar event format
+  const processDates = (res) => {
+    const result = [];
+    res.used_dates.forEach((date) => {
+      const dateEles = date.split("/");
+      result.push(
+        JSON.parse(
+          `{"title": "","start": "${dateEles[2]}-${dateEles[0]}-${dateEles[1]}","className": "primary"}`
+        )
+      );
+    });
+    return result;
+  };
+  // get today and set ui bgcolor
   const date = new Date();
   const time = date.getHours();
   let rootStyle = {
@@ -41,18 +56,25 @@ function MainPage() {
       background: "linear-gradient(to right bottom, #001330, #286FC3)",
     };
   }
+
+  useEffect(() => {
+    fetchUsedDates().then((res) => {
+      setUsedDateEvents(processDates(res));
+    });
+  }, [date.getDate()]);
+
   return (
     <div style={rootStyle}>
       <DashboardNavbar />
       <Grid container pl={5} pr={5} sspacing={3} justify="center">
         <Grid item xs={12} sm={12} md={12} lg={4} xl={4}>
-          <Calendar today={date} />
+          <Calendar usedDateEvents={usedDateEvents} today={date} />
         </Grid>
         <Grid item xs={12} sm={12} md={12} lg={4} xl={4}>
           <Weather latitude={location.latitude} longitude={location.longitude} />
         </Grid>
         <Grid item xs={12} sm={12} md={12} lg={4} xl={4}>
-          <Recommend latitude={location.latitude} longitude={location.longitude} />
+          {/* <Recommend latitude={location.latitude} longitude={location.longitude} /> */}
         </Grid>
       </Grid>
     </div>

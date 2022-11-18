@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import MDBox from "components/MDBox";
 import Grid from "@mui/material/Grid";
 import fetchRecommendation from "api/recommend";
-import fetchWeather from "api/fetch_weather";
+import fetchWeather from "api/weather";
 import ClothCard from "./components/clothCard";
 
 function Recommend({ latitude, longitude }) {
@@ -25,11 +25,9 @@ function Recommend({ latitude, longitude }) {
   const [topOptionalItems, setTopOptionalItems] = useState([]);
   useEffect(() => {
     if (!latitude || !longitude) return;
-    console.log("A");
 
-    fetchWeather(latitude, longitude).then((resw) => {
+    fetchWeather(latitude, longitude).then(() => {
       fetchRecommendation().then((res) => {
-        console.log(resw, res, latitude, longitude);
         setBottomItems(res[0].bottom);
         setTopItems(res[1].top_must);
         setTopOptionalItems(res[2].top_optional_1);
