@@ -13,18 +13,36 @@ import DateWeatherCard from "./components/dateWeatherCard";
 function Calendar({ usedDateEvents, today, latitude, longitude }) {
   const title = "History";
   const [weather, setWeather] = useState("unavailable");
-  const [date, setDate] = useState(today);
+  // convert date object to a formatted date string
+  const getDateString = (dateObj) =>
+    `${dateObj.getFullYear()}-${dateObj.getMonth() + 1}-${dateObj.getDate()}`;
+
+  const [date, setDate] = useState(getDateString(today));
 
   const [clothings, setClothings] = useState(["shirt", "shorts"]);
 
   // handle user select date from calendar, and updates info in the weatherDateCard
   const selectDate = (selection) => {
-    console.log("selectDate", selection);
-    setDate(selection);
-    fetchHistory(selection);
+    const selectedDateString = getDateString(selection);
+    setDate(selectedDateString);
+    fetchHistory(selectedDateString).then((res) => {
+      const { rain, feels_like, description, speed, temp_min, temp_max } = res.weather;
+      const { suggestions } = res.suggestions;
+      setClothings(suggestions);
+      setWeather({
+        precipitationChance: rain === "N/A" ? 0 : rain,
+        weather: description,
+        minTemp: Math.round(temp_min),
+        maxTemp: Math.round(temp_max),
+        feelslike: Math.round(feels_like),
+        image: getImage(description),
+        wind: speed,
+      });
+    });
   };
 
   useEffect(() => {
+    if (!latitude || !longitude) return;
     fetchWeather(latitude, longitude).then((res) => {
       // console.log(res);
       const { rain, feels_like, description, speed, temp_min, temp_max } = res;
@@ -38,7 +56,7 @@ function Calendar({ usedDateEvents, today, latitude, longitude }) {
         wind: speed,
       });
     });
-  });
+  }, [Math.round(latitude), Math.round(longitude)]);
   return (
     <MDBox color="white">
       {title}
@@ -60,19 +78,12 @@ function Calendar({ usedDateEvents, today, latitude, longitude }) {
         </Grid>
         <Grid item xs={12}>
           <DateWeatherCard
-            setClothings={setClothings}
-            // setDate={(seletion) => selectDate(seletion)}
-            setWeather={setWeather}
             image={weather?.image}
             weather={weather?.weather}
             maxTemp={weather?.maxTemp}
             minTemp={weather?.minTemp}
             windSpeed={weather?.windSpeed}
-            date={
-              (date === null || date.event === undefined ? today : date.event.start)
-                .toLocaleDateString("en-En", { year: "numeric", month: "short", day: "numeric" })
-                .split(",")[0]
-            }
+            date={date}
             clothings={clothings}
           />
         </Grid>

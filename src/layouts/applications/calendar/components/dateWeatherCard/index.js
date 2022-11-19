@@ -91,7 +91,7 @@ function DateWeatherCard({ image, weather, maxTemp, minTemp, windSpeed, date, cl
               {/* col for clothings */}
               <Grid item xs={6} md={3}>
                 <Grid container pl={0} spacing={0} alignItems="top" justify="center">
-                  {clothings.map((clothing, id) => (
+                  {clothings?.slice(0, 1).map((clothing, id) => (
                     <Grid item xs={12} key={clothing + Math.random(id)}>
                       <MDTypography
                         textTransform="capitalize"

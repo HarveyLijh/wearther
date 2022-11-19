@@ -68,7 +68,12 @@ function MainPage() {
       <DashboardNavbar />
       <Grid container pl={5} pr={5} sspacing={3} justify="center">
         <Grid item xs={12} sm={12} md={12} lg={4} xl={4}>
-          <Calendar usedDateEvents={usedDateEvents} today={date} />
+          <Calendar
+            latitude={location.latitude}
+            longitude={location.longitude}
+            usedDateEvents={usedDateEvents}
+            today={date}
+          />
         </Grid>
         <Grid item xs={12} sm={12} md={12} lg={4} xl={4}>
           <Weather latitude={location.latitude} longitude={location.longitude} />
