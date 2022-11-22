@@ -25,7 +25,7 @@ function MetadataCard({ precipitationChance, wind, humidity }) {
               {precipitationIcon}
             </Icon>
             <MDTypography color="white" display="inline" variant="body1" fontWeight="regular">
-              {precipitationChance} %
+              {precipitationChance}
             </MDTypography>
           </Grid>
           <Grid item xs={4}>
@@ -33,7 +33,7 @@ function MetadataCard({ precipitationChance, wind, humidity }) {
               {windIcon}
             </Icon>
             <MDTypography color="white" display="inline" variant="body1" fontWeight="regular">
-              {wind} km/h
+              {wind}
             </MDTypography>
           </Grid>
           <Grid item xs={4}>
@@ -41,7 +41,7 @@ function MetadataCard({ precipitationChance, wind, humidity }) {
               {humidityIcon}
             </Icon>
             <MDTypography color="white" display="inline" variant="body1" fontWeight="regular">
-              {humidity} %
+              {humidity}
             </MDTypography>
           </Grid>
         </Grid>
@@ -50,15 +50,15 @@ function MetadataCard({ precipitationChance, wind, humidity }) {
   );
 }
 MetadataCard.defaultProps = {
-  precipitationChance: 0,
-  wind: 0.0,
-  humidity: 0.0,
+  precipitationChance: "Unavailable",
+  wind: "Unavailable",
+  humidity: "Unavailable",
 };
 
 MetadataCard.propTypes = {
-  precipitationChance: PropTypes.number,
-  wind: PropTypes.number,
-  humidity: PropTypes.number,
+  precipitationChance: PropTypes.string,
+  wind: PropTypes.string,
+  humidity: PropTypes.string,
 };
 
 export default MetadataCard;

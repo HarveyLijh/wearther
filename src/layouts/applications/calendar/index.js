@@ -25,15 +25,16 @@ function Calendar({ usedDateEvents, today }) {
     const selectedDateString = getDateString(selection);
     setDate(selectedDateString);
     fetchHistory(selectedDateString).then((res) => {
-      const { rain, description, speed, temp_min, temp_max } = res.weather;
+      const { name, rain, description, speed, temp_min, temp_max } = res.weather;
       setClothings(res.suggestions);
       setWeather({
-        precipitationChance: rain === "N/A" ? 0 : rain,
+        city: name,
+        precipitationChance: rain === "N/A" ? "0 %" : `${rain?.toString()} °%`,
         weather: description,
         minTemp: `${Math.round(temp_min).toString()} °C`,
         maxTemp: `${Math.round(temp_max).toString()} °C`,
         image: getImage(description),
-        wind: `${speed} km/h`,
+        wind: `${speed.toString()} km/h`,
       });
     });
   };
@@ -66,6 +67,7 @@ function Calendar({ usedDateEvents, today }) {
             windSpeed={weather?.wind}
             date={date}
             clothings={clothings}
+            city={weather?.city}
           />
         </Grid>
       </Grid>

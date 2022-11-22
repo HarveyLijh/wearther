@@ -5,7 +5,7 @@ import Grid from "@mui/material/Grid";
 import MDTypography from "components/MDTypography";
 import PropTypes from "prop-types";
 
-function WeatherCard({ image, weather, feelslike, temperature, maxTemp, minTemp }) {
+function WeatherCard({ city, image, weather, feelslike, temperature, maxTemp, minTemp }) {
   return (
     <MDBox>
       <Grid container p={2} spacing={3} alignItems="center" justify="center">
@@ -31,8 +31,11 @@ function WeatherCard({ image, weather, feelslike, temperature, maxTemp, minTemp 
 
         <Grid item xs={12}>
           <MDBox p={2} textAlign="center">
-            <MDTypography color="white" display="inline" variant="h1" fontWeight="bold">
-              {temperature}°C
+            <MDTypography color="white" variant="h1" fontWeight="bold">
+              {temperature}
+            </MDTypography>
+            <MDTypography color="primary" variant="h3" fontWeight="regular">
+              {city}
             </MDTypography>
           </MDBox>
         </Grid>
@@ -48,10 +51,10 @@ function WeatherCard({ image, weather, feelslike, temperature, maxTemp, minTemp 
         </Grid>
         <Grid mt={-3} item xs={12} textAlign="center">
           <MDTypography color="white" variant="body1" fontWeight="regular">
-            Max: {maxTemp}°C Min: {minTemp}°C
+            Max: {maxTemp} Min: {minTemp}
           </MDTypography>
           <MDTypography color="white" variant="body1" fontWeight="regular">
-            Feels like: {feelslike}°C
+            Feels like: {feelslike}
           </MDTypography>
         </Grid>
       </Grid>
@@ -60,20 +63,22 @@ function WeatherCard({ image, weather, feelslike, temperature, maxTemp, minTemp 
 }
 
 WeatherCard.defaultProps = {
-  image: "N/A",
-  weather: "N/A",
-  temperature: 0,
-  maxTemp: 0,
-  minTemp: 0,
-  feelslike: 0,
+  image: "Unavailable",
+  weather: "Unavailable",
+  temperature: "Unavailable",
+  maxTemp: "Unavailable",
+  minTemp: "Unavailable",
+  feelslike: "Unavailable",
+  city: "Unavailable",
 };
 WeatherCard.propTypes = {
   image: PropTypes.string,
   weather: PropTypes.string,
-  temperature: PropTypes.number,
-  maxTemp: PropTypes.number,
-  minTemp: PropTypes.number,
-  feelslike: PropTypes.number,
+  temperature: PropTypes.string,
+  maxTemp: PropTypes.string,
+  minTemp: PropTypes.string,
+  feelslike: PropTypes.string,
+  city: PropTypes.string,
 };
 
 export default WeatherCard;

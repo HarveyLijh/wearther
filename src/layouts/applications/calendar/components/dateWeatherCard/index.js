@@ -5,7 +5,7 @@ import Grid from "@mui/material/Grid";
 import MDTypography from "components/MDTypography";
 import PropTypes from "prop-types";
 
-function DateWeatherCard({ image, weather, maxTemp, minTemp, windSpeed, date, clothings }) {
+function DateWeatherCard({ city, image, weather, maxTemp, minTemp, windSpeed, date, clothings }) {
   const styles = {
     modalBox: {
       width: "100%",
@@ -55,11 +55,17 @@ function DateWeatherCard({ image, weather, maxTemp, minTemp, windSpeed, date, cl
               <Grid item xs={6} md={4}>
                 <MDTypography
                   color={date === "Unavailable" ? "dark" : "white"}
-                  display="inline"
                   variant="body1"
                   fontWeight="regular"
                 >
                   {date}
+                </MDTypography>
+                <MDTypography
+                  color={date === "Unavailable" ? "dark" : "primary"}
+                  variant="body1"
+                  fontWeight="regular"
+                >
+                  {city}
                 </MDTypography>
               </Grid>
             </Grid>
@@ -182,6 +188,7 @@ function DateWeatherCard({ image, weather, maxTemp, minTemp, windSpeed, date, cl
 }
 DateWeatherCard.defaultProps = {
   image: undefined,
+  city: "Unavailable",
   weather: "Unavailable",
   maxTemp: "Unavailable",
   minTemp: "Unavailable",
@@ -207,6 +214,7 @@ DateWeatherCard.defaultProps = {
 };
 DateWeatherCard.propTypes = {
   image: PropTypes.string,
+  city: PropTypes.string,
   weather: PropTypes.string,
   maxTemp: PropTypes.string,
   minTemp: PropTypes.string,

@@ -17,17 +17,19 @@ function Weather({ latitude, longitude }) {
 
     fetchWeather(latitude, longitude).then((res) => {
       // console.log(res);
-      const { rain, feels_like, humidity, description, temp, speed, temp_min, temp_max } = res;
+      const { name, rain, feels_like, humidity, description, temp, speed, temp_min, temp_max } =
+        res;
       setWeather({
-        precipitationChance: rain === "N/A" ? 0 : rain,
+        city: name,
+        precipitationChance: rain === "N/A" ? "0 %" : `${rain?.toString()} °$`,
         weather: description,
-        minTemp: Math.round(temp_min),
-        maxTemp: Math.round(temp_max),
-        temperature: Math.round(temp),
-        feelslike: Math.round(feels_like),
+        temperature: `${Math.round(temp).toString()} °C`,
+        feelslike: `${Math.round(feels_like).toString()} °C`,
+        minTemp: `${Math.round(temp_min).toString()} °C`,
+        maxTemp: `${Math.round(temp_max).toString()} °C`,
         image: getImage(description),
-        wind: speed,
-        humidityVal: humidity,
+        wind: `${speed.toString()} km/h`,
+        humidityVal: `${humidity.toString()} %`,
       });
     });
   }, [Math.round(latitude), Math.round(longitude)]);
@@ -44,6 +46,7 @@ function Weather({ latitude, longitude }) {
             minTemp={weather?.minTemp}
             maxTemp={weather?.maxTemp}
             feelslike={weather?.feelslike}
+            city={weather?.city}
           />
         </Grid>
         <Grid item xs={12}>
@@ -58,8 +61,8 @@ function Weather({ latitude, longitude }) {
   );
 }
 Weather.defaultProps = {
-  latitude: 37.7749,
-  longitude: -122.4194,
+  latitude: undefined,
+  longitude: undefined,
 };
 Weather.propTypes = {
   latitude: PropTypes.number,
