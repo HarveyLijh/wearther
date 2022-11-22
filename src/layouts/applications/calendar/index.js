@@ -18,7 +18,7 @@ function Calendar({ usedDateEvents, today }) {
 
   const [date, setDate] = useState();
 
-  const [clothings, setClothings] = useState(["shirt", "shorts"]);
+  const [clothings, setClothings] = useState();
 
   // handle user select date from calendar, and updates info in the weatherDateCard
   const selectDate = (selection) => {

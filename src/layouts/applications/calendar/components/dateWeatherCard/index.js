@@ -18,6 +18,11 @@ function DateWeatherCard({ image, weather, maxTemp, minTemp, windSpeed, date, cl
       paddingTop: "5rem",
       borderRadius: "10px",
     },
+    clothCard: {
+      // backgroundColor: "rgba(0, 0, 0, 0.5)",
+      // padding: "2px",
+      // borderRadius: "10px",
+    },
   };
   return (
     <MDBox>
@@ -119,19 +124,53 @@ function DateWeatherCard({ image, weather, maxTemp, minTemp, windSpeed, date, cl
               {/* col for clothings */}
               <Grid item xs={6} md={4}>
                 <Grid container pl={0} spacing={0} alignItems="top" justify="center">
-                  {clothings?.slice(0, 2).map((clothing, id) => (
-                    <Grid item xs={12} key={clothing + Math.random(id)}>
+                  {clothings?.top_optional_1[0] && (
+                    <Grid item xs={12}>
                       <MDTypography
+                        noWrap
+                        style={styles.clothCard}
                         textTransform="capitalize"
-                        color="white"
+                        color={minTemp === "Unavailable" ? "dark" : "white"}
                         display="inline"
                         variant="body1"
                         fontWeight="regular"
                       >
-                        {clothing.model}
+                        {clothings.top_optional_1[0].model.replaceAll("-", " ")}
                       </MDTypography>
                     </Grid>
-                  ))}
+                  )}
+
+                  {clothings?.top_required[0] && (
+                    <Grid item xs={12}>
+                      <MDTypography
+                        noWrap
+                        style={styles.clothCard}
+                        textTransform="capitalize"
+                        color={minTemp === "Unavailable" ? "dark" : "white"}
+                        display="inline"
+                        variant="body1"
+                        fontWeight="regular"
+                      >
+                        {clothings.top_required[0].model.replaceAll("-", " ")}
+                      </MDTypography>
+                    </Grid>
+                  )}
+
+                  {clothings?.bottomwear[0] && (
+                    <Grid item xs={12}>
+                      <MDTypography
+                        noWrap
+                        style={styles.clothCard}
+                        textTransform="capitalize"
+                        color={minTemp === "Unavailable" ? "dark" : "white"}
+                        display="inline"
+                        variant="body1"
+                        fontWeight="regular"
+                      >
+                        {clothings.bottomwear[0].model.replaceAll("-", " ")}
+                      </MDTypography>
+                    </Grid>
+                  )}
                 </Grid>
               </Grid>
             </Grid>
@@ -148,7 +187,23 @@ DateWeatherCard.defaultProps = {
   minTemp: "Unavailable",
   windSpeed: "Unavailable",
   date: "Unavailable",
-  clothings: PropTypes.arrayOf(String),
+  clothings: {
+    bottomwear: [
+      {
+        model: "Unavailable",
+      },
+    ],
+    top_optional_1: [
+      {
+        model: "Unavailable",
+      },
+    ],
+    top_required: [
+      {
+        model: "Unavailable",
+      },
+    ],
+  },
 };
 DateWeatherCard.propTypes = {
   image: PropTypes.string,
@@ -157,7 +212,23 @@ DateWeatherCard.propTypes = {
   minTemp: PropTypes.string,
   windSpeed: PropTypes.string,
   date: PropTypes.string,
-  clothings: PropTypes.arrayOf(String),
+  clothings: PropTypes.shape({
+    bottomwear: PropTypes.arrayOf(
+      PropTypes.shape({
+        model: PropTypes.string.isRequired,
+      }).isRequired
+    ).isRequired,
+    top_required: PropTypes.arrayOf(
+      PropTypes.shape({
+        model: PropTypes.string.isRequired,
+      }).isRequired
+    ).isRequired,
+    top_optional_1: PropTypes.arrayOf(
+      PropTypes.shape({
+        model: PropTypes.string.isRequired,
+      }).isRequired
+    ),
+  }),
 };
 
 export default DateWeatherCard;
