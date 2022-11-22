@@ -13,6 +13,7 @@ function ClothCard({ items }) {
       color: "dark.main",
     },
   };
+  // console.log(items);
   return (
     <MDBox>
       <Card sx={{ backgroundColor: "dark.main", color: "white" }}>

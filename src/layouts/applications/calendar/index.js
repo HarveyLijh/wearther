@@ -1,6 +1,5 @@
-import { useEffect, useState, useMemo } from "react";
+import { useState, useMemo } from "react";
 import fetchHistory from "api/history";
-import fetchWeather from "api/weather";
 
 import getImage from "constant/getWeatherImage";
 import PropTypes from "prop-types";
@@ -10,14 +9,14 @@ import EventCalendar from "examples/Calendar";
 import MDBox from "components/MDBox";
 import DateWeatherCard from "./components/dateWeatherCard";
 
-function Calendar({ usedDateEvents, today, latitude, longitude }) {
+function Calendar({ usedDateEvents, today }) {
   const title = "History";
   const [weather, setWeather] = useState("unavailable");
   // convert date object to a formatted date string
   const getDateString = (dateObj) =>
     `${dateObj.getFullYear()}-${dateObj.getMonth() + 1}-${dateObj.getDate()}`;
 
-  const [date, setDate] = useState(getDateString(today));
+  const [date, setDate] = useState();
 
   const [clothings, setClothings] = useState(["shirt", "shorts"]);
 
@@ -26,37 +25,19 @@ function Calendar({ usedDateEvents, today, latitude, longitude }) {
     const selectedDateString = getDateString(selection);
     setDate(selectedDateString);
     fetchHistory(selectedDateString).then((res) => {
-      const { rain, feels_like, description, speed, temp_min, temp_max } = res.weather;
-      const { suggestions } = res.suggestions;
-      setClothings(suggestions);
+      const { rain, description, speed, temp_min, temp_max } = res.weather;
+      setClothings(res.suggestions);
       setWeather({
         precipitationChance: rain === "N/A" ? 0 : rain,
         weather: description,
-        minTemp: Math.round(temp_min),
-        maxTemp: Math.round(temp_max),
-        feelslike: Math.round(feels_like),
+        minTemp: `${Math.round(temp_min).toString()} °C`,
+        maxTemp: `${Math.round(temp_max).toString()} °C`,
         image: getImage(description),
-        wind: speed,
+        wind: `${speed} km/h`,
       });
     });
   };
 
-  useEffect(() => {
-    if (!latitude || !longitude) return;
-    fetchWeather(latitude, longitude).then((res) => {
-      // console.log(res);
-      const { rain, feels_like, description, speed, temp_min, temp_max } = res;
-      setWeather({
-        precipitationChance: rain === "N/A" ? 0 : rain,
-        weather: description,
-        minTemp: Math.round(temp_min),
-        maxTemp: Math.round(temp_max),
-        feelslike: Math.round(feels_like),
-        image: getImage(description),
-        wind: speed,
-      });
-    });
-  }, [Math.round(latitude), Math.round(longitude)]);
   return (
     <MDBox color="white">
       {title}
@@ -82,7 +63,7 @@ function Calendar({ usedDateEvents, today, latitude, longitude }) {
             weather={weather?.weather}
             maxTemp={weather?.maxTemp}
             minTemp={weather?.minTemp}
-            windSpeed={weather?.windSpeed}
+            windSpeed={weather?.wind}
             date={date}
             clothings={clothings}
           />
@@ -91,10 +72,6 @@ function Calendar({ usedDateEvents, today, latitude, longitude }) {
     </MDBox>
   );
 }
-Calendar.defaultProps = {
-  latitude: 37.7749,
-  longitude: -122.4194,
-};
 Calendar.propTypes = {
   today: PropTypes.instanceOf(Date).isRequired,
   usedDateEvents: PropTypes.arrayOf(
@@ -104,7 +81,5 @@ Calendar.propTypes = {
       className: PropTypes.string.isRequired,
     })
   ).isRequired,
-  latitude: PropTypes.number,
-  longitude: PropTypes.number,
 };
 export default Calendar;

@@ -6,26 +6,54 @@ import MDTypography from "components/MDTypography";
 import PropTypes from "prop-types";
 
 function DateWeatherCard({ image, weather, maxTemp, minTemp, windSpeed, date, clothings }) {
+  const styles = {
+    modalBox: {
+      width: "100%",
+      height: "100%",
+      backgroundColor: "rgba(0, 0, 0, 0.5)",
+      position: "absolute",
+      zIndex: 10,
+      textAlign: "center",
+      padding: "2rem",
+      paddingTop: "5rem",
+      borderRadius: "10px",
+    },
+  };
   return (
     <MDBox>
       <Card sx={{ backgroundColor: "dark.main", color: "white" }}>
+        {/* show when user doesn't select any date */}
+        {weather === "Unavailable" ? (
+          <MDBox style={styles.modalBox}>
+            <MDTypography mt="50%" color="white" display="inline" variant="h4" fontWeight="bold">
+              Please choose a date in the calendar above to review historical weather data
+            </MDTypography>
+          </MDBox>
+        ) : null}
         <Grid container p={2} spacing={3} alignItems="center" justify="center">
           {/* upper row */}
           <Grid item xs={12}>
             <Grid container pl={2} pt={2} spacing={0} alignItems="top" justify="center">
               {/* image */}
               <Grid item xs={5} md={3}>
-                <MDBox position="relative" borderRadius="lg">
-                  <MDBox component="img" src={image} alt={weather} width="100%" height="100%" />
+                <MDBox position="relative" borderRadius="lg" height="100px">
+                  {image && (
+                    <MDBox component="img" src={image} alt={weather} width="100%" height="100%" />
+                  )}
                 </MDBox>
               </Grid>
               {/* place holder in between */}
-              <Grid item xs={1} md={6}>
+              <Grid item xs={1} md={5}>
                 <MDBox />
               </Grid>
               {/* date  */}
-              <Grid item xs={6} md={3}>
-                <MDTypography color="white" display="inline" variant="body1" fontWeight="regular">
+              <Grid item xs={6} md={4}>
+                <MDTypography
+                  color={date === "Unavailable" ? "dark" : "white"}
+                  display="inline"
+                  variant="body1"
+                  fontWeight="regular"
+                >
                   {date}
                 </MDTypography>
               </Grid>
@@ -41,7 +69,7 @@ function DateWeatherCard({ image, weather, maxTemp, minTemp, windSpeed, date, cl
                   <Grid item xs={12}>
                     <MDTypography
                       textTransform="capitalize"
-                      color="white"
+                      color={weather === "Unavailable" ? "dark" : "white"}
                       display="inline"
                       variant="body1"
                       fontWeight="bold"
@@ -52,46 +80,46 @@ function DateWeatherCard({ image, weather, maxTemp, minTemp, windSpeed, date, cl
                   {/* max temp */}
                   <Grid item xs={12}>
                     <MDTypography
-                      color="white"
+                      color={maxTemp === "Unavailable" ? "dark" : "white"}
                       display="inline"
                       variant="body2"
                       fontWeight="regular"
                     >
-                      Max: {maxTemp}°C
+                      Max: {maxTemp}
                     </MDTypography>
                   </Grid>
                   {/* min temp */}
                   <Grid item xs={12}>
                     <MDTypography
-                      color="white"
+                      color={minTemp === "Unavailable" ? "dark" : "white"}
                       display="inline"
                       variant="body2"
                       fontWeight="regular"
                     >
-                      Min: {minTemp}°C
+                      Min: {minTemp}
                     </MDTypography>
                   </Grid>
                   {/* wind speed */}
                   <Grid item xs={12}>
                     <MDTypography
-                      color="white"
+                      color={windSpeed === "Unavailable" ? "dark" : "white"}
                       display="inline"
                       variant="body2"
                       fontWeight="regular"
                     >
-                      Wind: {windSpeed}km/h
+                      Wind: {windSpeed}
                     </MDTypography>
                   </Grid>
                 </Grid>
               </Grid>
               {/* place holder in between */}
-              <Grid item xs={0} md={4}>
+              <Grid item xs={0} md={3}>
                 <MDBox />
               </Grid>
               {/* col for clothings */}
-              <Grid item xs={6} md={3}>
+              <Grid item xs={6} md={4}>
                 <Grid container pl={0} spacing={0} alignItems="top" justify="center">
-                  {clothings?.slice(0, 1).map((clothing, id) => (
+                  {clothings?.slice(0, 2).map((clothing, id) => (
                     <Grid item xs={12} key={clothing + Math.random(id)}>
                       <MDTypography
                         textTransform="capitalize"
@@ -100,7 +128,7 @@ function DateWeatherCard({ image, weather, maxTemp, minTemp, windSpeed, date, cl
                         variant="body1"
                         fontWeight="regular"
                       >
-                        {clothing}
+                        {clothing.model}
                       </MDTypography>
                     </Grid>
                   ))}
@@ -113,15 +141,23 @@ function DateWeatherCard({ image, weather, maxTemp, minTemp, windSpeed, date, cl
     </MDBox>
   );
 }
-
+DateWeatherCard.defaultProps = {
+  image: undefined,
+  weather: "Unavailable",
+  maxTemp: "Unavailable",
+  minTemp: "Unavailable",
+  windSpeed: "Unavailable",
+  date: "Unavailable",
+  clothings: PropTypes.arrayOf(String),
+};
 DateWeatherCard.propTypes = {
-  image: PropTypes.string.isRequired,
-  weather: PropTypes.string.isRequired,
-  maxTemp: PropTypes.number.isRequired,
-  minTemp: PropTypes.number.isRequired,
-  windSpeed: PropTypes.number.isRequired,
-  date: PropTypes.string.isRequired,
-  clothings: PropTypes.arrayOf(String).isRequired,
+  image: PropTypes.string,
+  weather: PropTypes.string,
+  maxTemp: PropTypes.string,
+  minTemp: PropTypes.string,
+  windSpeed: PropTypes.string,
+  date: PropTypes.string,
+  clothings: PropTypes.arrayOf(String),
 };
 
 export default DateWeatherCard;

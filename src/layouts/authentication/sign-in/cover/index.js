@@ -15,7 +15,7 @@ import MDSnackbar from "components/MDSnackbar";
 
 // Authentication layout components
 import CoverLayout from "layouts/authentication/components/CoverLayout";
-import login from "api/session";
+import login from "api/login";
 import { WRONG_INFO_PROMPT, EMPTY_INFO_PROMPT } from "constant";
 // Context
 import { useMaterialUIController, setUserName } from "context";

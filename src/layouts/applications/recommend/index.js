@@ -25,9 +25,10 @@ function Recommend({ latitude, longitude }) {
   const [topOptionalItems, setTopOptionalItems] = useState([]);
   useEffect(() => {
     if (!latitude || !longitude) return;
-
-    fetchWeather(latitude, longitude).then(() => {
-      fetchRecommendation().then((res) => {
+    // get weather
+    fetchWeather(latitude, longitude).then((weatherRes) => {
+      // get clothes suggestions
+      fetchRecommendation(weatherRes).then((res) => {
         setBottomItems(res[0].bottom);
         setTopItems(res[1].top_must);
         setTopOptionalItems(res[2].top_optional_1);

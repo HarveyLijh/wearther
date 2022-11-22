@@ -19,7 +19,7 @@ import { useMaterialUIController, setUserName } from "context";
 
 // Authentication layout components
 import BasicLayout from "layouts/authentication/components/BasicLayout";
-import login from "api/session";
+import login from "api/login";
 import { WRONG_INFO_PROMPT, EMPTY_INFO_PROMPT } from "constant";
 
 // Images
