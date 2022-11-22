@@ -130,7 +130,22 @@ function DateWeatherCard({ city, image, weather, maxTemp, minTemp, windSpeed, da
               {/* col for clothings */}
               <Grid item xs={6} md={4}>
                 <Grid container pl={0} spacing={0} alignItems="top" justify="center">
-                  {clothings?.top_optional_1[0] && (
+                  {clothings?.top_optional_2 && (
+                    <Grid item xs={12}>
+                      <MDTypography
+                        noWrap
+                        style={styles.clothCard}
+                        textTransform="capitalize"
+                        color={minTemp === "Unavailable" ? "dark" : "white"}
+                        display="inline"
+                        variant="body1"
+                        fontWeight="regular"
+                      >
+                        {clothings.top_optional_2[0].model.replaceAll("-", " ")}
+                      </MDTypography>
+                    </Grid>
+                  )}
+                  {clothings?.top_optional_1 && (
                     <Grid item xs={12}>
                       <MDTypography
                         noWrap
@@ -146,7 +161,7 @@ function DateWeatherCard({ city, image, weather, maxTemp, minTemp, windSpeed, da
                     </Grid>
                   )}
 
-                  {clothings?.top_required[0] && (
+                  {clothings?.top_required && (
                     <Grid item xs={12}>
                       <MDTypography
                         noWrap
@@ -162,7 +177,7 @@ function DateWeatherCard({ city, image, weather, maxTemp, minTemp, windSpeed, da
                     </Grid>
                   )}
 
-                  {clothings?.bottomwear[0] && (
+                  {clothings?.bottomwear && (
                     <Grid item xs={12}>
                       <MDTypography
                         noWrap
@@ -232,6 +247,11 @@ DateWeatherCard.propTypes = {
       }).isRequired
     ).isRequired,
     top_optional_1: PropTypes.arrayOf(
+      PropTypes.shape({
+        model: PropTypes.string.isRequired,
+      }).isRequired
+    ),
+    top_optional_2: PropTypes.arrayOf(
       PropTypes.shape({
         model: PropTypes.string.isRequired,
       }).isRequired

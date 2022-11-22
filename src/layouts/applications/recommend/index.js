@@ -23,6 +23,7 @@ function Recommend({ latitude, longitude }) {
   ]);
 
   const [topOptionalItems, setTopOptionalItems] = useState([]);
+  const [topOptionalItems2, setTopOptionalItems2] = useState([]);
   useEffect(() => {
     if (!latitude || !longitude) return;
     // get weather
@@ -32,6 +33,7 @@ function Recommend({ latitude, longitude }) {
         setBottomItems(res[0].bottom);
         setTopItems(res[1].top_must);
         setTopOptionalItems(res[2].top_optional_1);
+        setTopOptionalItems2(res[3]?.top_optional_2);
       });
     });
   }, [Math.round(latitude), Math.round(longitude)]);
@@ -39,22 +41,37 @@ function Recommend({ latitude, longitude }) {
   return (
     <MDBox color="white">
       {title}
-      <Grid container p={2} spacing={3} alignItems="center" justify="center">
-        {topOptionalItems.length > 0 && (
+      <MDBox mt={2} color="white">
+        <Grid
+          container
+          p={2}
+          spacing={1}
+          alignItems="center"
+          justify="center"
+          style={{ maxHeight: "800px", overflow: "auto" }}
+        >
+          {topOptionalItems2.length > 0 && (
+            <Grid item xs={12}>
+              Top 3
+              <ClothCard items={topOptionalItems2} />
+            </Grid>
+          )}
+          {topOptionalItems.length > 0 && (
+            <Grid item xs={12}>
+              Top 2
+              <ClothCard items={topOptionalItems} />
+            </Grid>
+          )}
           <Grid item xs={12}>
-            Optional Top
-            <ClothCard items={topOptionalItems} />
+            {topOptionalItems.length > 0 ? "Top 1" : "Top"}
+            <ClothCard items={topItems} />
           </Grid>
-        )}
-        <Grid item xs={12}>
-          Top
-          <ClothCard items={topItems} />
+          <Grid item xs={12}>
+            Bottom
+            <ClothCard items={bottomItems} />
+          </Grid>
         </Grid>
-        <Grid item xs={12}>
-          Bottom
-          <ClothCard items={bottomItems} />
-        </Grid>
-      </Grid>
+      </MDBox>
     </MDBox>
   );
 }

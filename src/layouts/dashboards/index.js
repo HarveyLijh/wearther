@@ -4,6 +4,7 @@ import Calendar from "layouts/applications/calendar";
 import Weather from "layouts/applications/weather";
 import Recommend from "layouts/applications/recommend";
 import Grid from "@mui/material/Grid";
+import CircularProgress from "@mui/material/CircularProgress";
 import DashboardNavbar from "examples/Navbars/DashboardNavbar";
 import fetchUsedDates from "api/usedDate";
 import MDBox from "components/MDBox";
@@ -71,7 +72,7 @@ function MainPage() {
   return (
     <MDBox style={rootStyle}>
       <DashboardNavbar />
-      {location.latitude && location.longitude && (
+      {location.latitude && location.longitude ? (
         <Grid container pl={5} pr={5} sspacing={3} justify="center">
           <Grid item xs={12} sm={12} md={12} lg={4} xl={4}>
             <Calendar
@@ -88,6 +89,17 @@ function MainPage() {
             <Recommend latitude={location.latitude} longitude={location.longitude} />
           </Grid>
         </Grid>
+      ) : (
+        <MDBox
+          mt={20}
+          style={{
+            display: "flex",
+            justifyContent: "center",
+          }}
+        >
+          <CircularProgress size={100} />
+          {/* use ref to achieve better result https://mui.com/material-ui/react-progress/ */}
+        </MDBox>
       )}
     </MDBox>
   );
