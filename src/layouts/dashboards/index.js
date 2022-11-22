@@ -6,6 +6,7 @@ import Recommend from "layouts/applications/recommend";
 import Grid from "@mui/material/Grid";
 import DashboardNavbar from "examples/Navbars/DashboardNavbar";
 import fetchUsedDates from "api/usedDate";
+import MDBox from "components/MDBox";
 
 function MainPage() {
   const [location, setLocation] = useState("unavailable");
@@ -45,12 +46,12 @@ function MainPage() {
   const date = new Date();
   const time = date.getHours();
   let rootStyle = {
-    flexGrow: 1,
+    height: "100vh",
     background: "linear-gradient(to right bottom, #ABD7FF, #1C8CF2)",
   };
   if (time <= 6 || time >= 18) {
     rootStyle = {
-      flexGrow: 1,
+      height: "100vh",
       background: "linear-gradient(to right bottom, #001330, #286FC3)",
     };
   }
@@ -62,7 +63,7 @@ function MainPage() {
   }, [date.getDate()]);
 
   return (
-    <div style={rootStyle}>
+    <MDBox style={rootStyle}>
       <DashboardNavbar />
       <Grid container pl={5} pr={5} sspacing={3} justify="center">
         <Grid item xs={12} sm={12} md={12} lg={4} xl={4}>
@@ -80,7 +81,7 @@ function MainPage() {
           <Recommend latitude={location.latitude} longitude={location.longitude} />
         </Grid>
       </Grid>
-    </div>
+    </MDBox>
   );
 }
 
