@@ -37,7 +37,7 @@ function ClothCard({ items }) {
                   <MDBox
                     component="img"
                     src={item.picture}
-                    alt={item.model.replaceAll("-", " ")}
+                    alt={item.model}
                     width="80%"
                     position="relative"
                     zIndex={1}
@@ -53,7 +53,7 @@ function ClothCard({ items }) {
                     textTransform="capitalize"
                     fontWeight="regular"
                   >
-                    {item.model.replaceAll("-", " ")}
+                    {item.model?.replaceAll("-", " ")}
                   </MDTypography>
                 </MDBox>
               </Grid>
