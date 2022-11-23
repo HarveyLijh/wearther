@@ -54,14 +54,14 @@ function DateWeatherCard({ city, image, weather, maxTemp, minTemp, windSpeed, da
               {/* date  */}
               <Grid item xs={6} md={4}>
                 <MDTypography
-                  color={date === "Unavailable" ? "dark" : "white"}
+                  color={date === "Unavailable" ? "transparent" : "white"}
                   variant="body1"
                   fontWeight="regular"
                 >
                   {date}
                 </MDTypography>
                 <MDTypography
-                  color={date === "Unavailable" ? "dark" : "primary"}
+                  color={date === "Unavailable" ? "transparent" : "primary"}
                   variant="body1"
                   fontWeight="regular"
                 >
@@ -80,7 +80,7 @@ function DateWeatherCard({ city, image, weather, maxTemp, minTemp, windSpeed, da
                   <Grid item xs={12}>
                     <MDTypography
                       textTransform="capitalize"
-                      color={weather === "Unavailable" ? "dark" : "white"}
+                      color={weather === "Unavailable" ? "transparent" : "white"}
                       display="inline"
                       variant="body1"
                       fontWeight="bold"
@@ -91,7 +91,7 @@ function DateWeatherCard({ city, image, weather, maxTemp, minTemp, windSpeed, da
                   {/* max temp */}
                   <Grid item xs={12}>
                     <MDTypography
-                      color={maxTemp === "Unavailable" ? "dark" : "white"}
+                      color={maxTemp === "Unavailable" ? "transparent" : "white"}
                       display="inline"
                       variant="body2"
                       fontWeight="regular"
@@ -102,7 +102,7 @@ function DateWeatherCard({ city, image, weather, maxTemp, minTemp, windSpeed, da
                   {/* min temp */}
                   <Grid item xs={12}>
                     <MDTypography
-                      color={minTemp === "Unavailable" ? "dark" : "white"}
+                      color={minTemp === "Unavailable" ? "transparent" : "white"}
                       display="inline"
                       variant="body2"
                       fontWeight="regular"
@@ -113,7 +113,7 @@ function DateWeatherCard({ city, image, weather, maxTemp, minTemp, windSpeed, da
                   {/* wind speed */}
                   <Grid item xs={12}>
                     <MDTypography
-                      color={windSpeed === "Unavailable" ? "dark" : "white"}
+                      color={windSpeed === "Unavailable" ? "transparent" : "white"}
                       display="inline"
                       variant="body2"
                       fontWeight="regular"
@@ -136,7 +136,7 @@ function DateWeatherCard({ city, image, weather, maxTemp, minTemp, windSpeed, da
                         noWrap
                         style={styles.clothCard}
                         textTransform="capitalize"
-                        color={minTemp === "Unavailable" ? "dark" : "white"}
+                        color={minTemp === "Unavailable" ? "transparent" : "white"}
                         display="inline"
                         variant="body1"
                         fontWeight="regular"
@@ -151,7 +151,7 @@ function DateWeatherCard({ city, image, weather, maxTemp, minTemp, windSpeed, da
                         noWrap
                         style={styles.clothCard}
                         textTransform="capitalize"
-                        color={minTemp === "Unavailable" ? "dark" : "white"}
+                        color={minTemp === "Unavailable" ? "transparent" : "white"}
                         display="inline"
                         variant="body1"
                         fontWeight="regular"
@@ -167,7 +167,7 @@ function DateWeatherCard({ city, image, weather, maxTemp, minTemp, windSpeed, da
                         noWrap
                         style={styles.clothCard}
                         textTransform="capitalize"
-                        color={minTemp === "Unavailable" ? "dark" : "white"}
+                        color={minTemp === "Unavailable" ? "transparent" : "white"}
                         display="inline"
                         variant="body1"
                         fontWeight="regular"
@@ -183,7 +183,7 @@ function DateWeatherCard({ city, image, weather, maxTemp, minTemp, windSpeed, da
                         noWrap
                         style={styles.clothCard}
                         textTransform="capitalize"
-                        color={minTemp === "Unavailable" ? "dark" : "white"}
+                        color={minTemp === "Unavailable" ? "transparent" : "white"}
                         display="inline"
                         variant="body1"
                         fontWeight="regular"

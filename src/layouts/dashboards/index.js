@@ -53,12 +53,12 @@ function MainPage() {
   const date = new Date();
   const time = date.getHours();
   let rootStyle = {
-    height: "100vh",
+    height: "110vh",
     background: "linear-gradient(to right bottom, #ABD7FF, #1C8CF2)",
   };
   if (time <= 6 || time >= 18) {
     rootStyle = {
-      height: "100vh",
+      height: "110vh",
       background: "linear-gradient(to right bottom, #001330, #286FC3)",
     };
   }
