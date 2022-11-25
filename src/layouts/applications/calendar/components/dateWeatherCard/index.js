@@ -28,7 +28,7 @@ function DateWeatherCard({ city, image, weather, maxTemp, minTemp, windSpeed, da
     <MDBox>
       <Card sx={{ backgroundColor: "dark.main", color: "white" }}>
         {/* show when user doesn't select any date */}
-        {weather === "Unavailable" ? (
+        {weather === "Loading..." ? (
           <MDBox style={styles.modalBox}>
             <MDTypography mt="50%" color="white" display="inline" variant="h4" fontWeight="bold">
               Please choose a date in the calendar above to review historical weather data
@@ -54,14 +54,14 @@ function DateWeatherCard({ city, image, weather, maxTemp, minTemp, windSpeed, da
               {/* date  */}
               <Grid item xs={6} md={4}>
                 <MDTypography
-                  color={date === "Unavailable" ? "transparent" : "white"}
+                  color={date === "Loading..." ? "transparent" : "white"}
                   variant="body1"
                   fontWeight="regular"
                 >
                   {date}
                 </MDTypography>
                 <MDTypography
-                  color={date === "Unavailable" ? "transparent" : "primary"}
+                  color={date === "Loading..." ? "transparent" : "primary"}
                   variant="body1"
                   fontWeight="regular"
                 >
@@ -80,7 +80,7 @@ function DateWeatherCard({ city, image, weather, maxTemp, minTemp, windSpeed, da
                   <Grid item xs={12}>
                     <MDTypography
                       textTransform="capitalize"
-                      color={weather === "Unavailable" ? "transparent" : "white"}
+                      color={weather === "Loading..." ? "transparent" : "white"}
                       display="inline"
                       variant="body1"
                       fontWeight="bold"
@@ -91,7 +91,7 @@ function DateWeatherCard({ city, image, weather, maxTemp, minTemp, windSpeed, da
                   {/* max temp */}
                   <Grid item xs={12}>
                     <MDTypography
-                      color={maxTemp === "Unavailable" ? "transparent" : "white"}
+                      color={maxTemp === "Loading..." ? "transparent" : "white"}
                       display="inline"
                       variant="body2"
                       fontWeight="regular"
@@ -102,7 +102,7 @@ function DateWeatherCard({ city, image, weather, maxTemp, minTemp, windSpeed, da
                   {/* min temp */}
                   <Grid item xs={12}>
                     <MDTypography
-                      color={minTemp === "Unavailable" ? "transparent" : "white"}
+                      color={minTemp === "Loading..." ? "transparent" : "white"}
                       display="inline"
                       variant="body2"
                       fontWeight="regular"
@@ -113,7 +113,7 @@ function DateWeatherCard({ city, image, weather, maxTemp, minTemp, windSpeed, da
                   {/* wind speed */}
                   <Grid item xs={12}>
                     <MDTypography
-                      color={windSpeed === "Unavailable" ? "transparent" : "white"}
+                      color={windSpeed === "Loading..." ? "transparent" : "white"}
                       display="inline"
                       variant="body2"
                       fontWeight="regular"
@@ -136,7 +136,7 @@ function DateWeatherCard({ city, image, weather, maxTemp, minTemp, windSpeed, da
                         noWrap
                         style={styles.clothCard}
                         textTransform="capitalize"
-                        color={minTemp === "Unavailable" ? "transparent" : "white"}
+                        color={minTemp === "Loading..." ? "transparent" : "white"}
                         display="inline"
                         variant="body1"
                         fontWeight="regular"
@@ -151,7 +151,7 @@ function DateWeatherCard({ city, image, weather, maxTemp, minTemp, windSpeed, da
                         noWrap
                         style={styles.clothCard}
                         textTransform="capitalize"
-                        color={minTemp === "Unavailable" ? "transparent" : "white"}
+                        color={minTemp === "Loading..." ? "transparent" : "white"}
                         display="inline"
                         variant="body1"
                         fontWeight="regular"
@@ -167,7 +167,7 @@ function DateWeatherCard({ city, image, weather, maxTemp, minTemp, windSpeed, da
                         noWrap
                         style={styles.clothCard}
                         textTransform="capitalize"
-                        color={minTemp === "Unavailable" ? "transparent" : "white"}
+                        color={minTemp === "Loading..." ? "transparent" : "white"}
                         display="inline"
                         variant="body1"
                         fontWeight="regular"
@@ -183,7 +183,7 @@ function DateWeatherCard({ city, image, weather, maxTemp, minTemp, windSpeed, da
                         noWrap
                         style={styles.clothCard}
                         textTransform="capitalize"
-                        color={minTemp === "Unavailable" ? "transparent" : "white"}
+                        color={minTemp === "Loading..." ? "transparent" : "white"}
                         display="inline"
                         variant="body1"
                         fontWeight="regular"
@@ -203,26 +203,26 @@ function DateWeatherCard({ city, image, weather, maxTemp, minTemp, windSpeed, da
 }
 DateWeatherCard.defaultProps = {
   image: undefined,
-  city: "Unavailable",
-  weather: "Unavailable",
-  maxTemp: "Unavailable",
-  minTemp: "Unavailable",
-  windSpeed: "Unavailable",
-  date: "Unavailable",
+  city: "Loading...",
+  weather: "Loading...",
+  maxTemp: "Loading...",
+  minTemp: "Loading...",
+  windSpeed: "Loading...",
+  date: "Loading...",
   clothings: {
     bottomwear: [
       {
-        model: "Unavailable",
+        model: "Loading...",
       },
     ],
     top_optional_1: [
       {
-        model: "Unavailable",
+        model: "Loading...",
       },
     ],
     top_required: [
       {
-        model: "Unavailable",
+        model: "Loading...",
       },
     ],
   },

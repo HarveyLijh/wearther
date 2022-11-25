@@ -11,7 +11,7 @@ import DateWeatherCard from "./components/dateWeatherCard";
 
 function Calendar({ usedDateEvents, today }) {
   const title = "History";
-  const [weather, setWeather] = useState("unavailable");
+  const [weather, setWeather] = useState("Loading...");
   // convert date object to a formatted date string
   const getDateString = (dateObj) =>
     `${dateObj.getFullYear()}-${dateObj.getMonth() + 1}-${dateObj.getDate()}`;

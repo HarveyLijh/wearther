@@ -63,13 +63,13 @@ function WeatherCard({ city, image, weather, feelslike, temperature, maxTemp, mi
 }
 
 WeatherCard.defaultProps = {
-  image: "Unavailable",
-  weather: "Unavailable",
-  temperature: "Unavailable",
-  maxTemp: "Unavailable",
-  minTemp: "Unavailable",
-  feelslike: "Unavailable",
-  city: "Unavailable",
+  image: "Loading...",
+  weather: "Loading...",
+  temperature: "Loading...",
+  maxTemp: "Loading...",
+  minTemp: "Loading...",
+  feelslike: "Loading...",
+  city: "Loading...",
 };
 WeatherCard.propTypes = {
   image: PropTypes.string,

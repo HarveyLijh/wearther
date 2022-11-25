@@ -10,7 +10,7 @@ import WeatherCard from "./components/weatherCard";
 
 function Weather({ latitude, longitude }) {
   const title = "Weather";
-  const [weather, setWeather] = useState("unavailable");
+  const [weather, setWeather] = useState("Loading...");
 
   useEffect(() => {
     if (!latitude || !longitude) return;

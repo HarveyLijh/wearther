@@ -50,9 +50,9 @@ function MetadataCard({ precipitationChance, wind, humidity }) {
   );
 }
 MetadataCard.defaultProps = {
-  precipitationChance: "Unavailable",
-  wind: "Unavailable",
-  humidity: "Unavailable",
+  precipitationChance: "Loading...",
+  wind: "Loading...",
+  humidity: "Loading...",
 };
 
 MetadataCard.propTypes = {
