@@ -28,8 +28,15 @@ function Recommend({ latitude, longitude }) {
     if (!latitude || !longitude) return;
     // get weather
     fetchWeather(latitude, longitude).then((weatherRes) => {
+      // trim off 1h from the response
+      // eslint-disable-next-line consistent-return
+      const trimmedWeatherRes = JSON.stringify(weatherRes, (key, value) => {
+        if (key !== "1h") {
+          return value;
+        }
+      });
       // get clothes suggestions
-      fetchRecommendation(weatherRes).then((res) => {
+      fetchRecommendation(JSON.parse(trimmedWeatherRes)).then((res) => {
         setBottomItems(res[0].bottom);
         setTopItems(res[1].top_must);
         setTopOptionalItems(res[2].top_optional_1);
