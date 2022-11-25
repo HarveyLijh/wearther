@@ -18,14 +18,16 @@ function WeatherCard({ city, image, weather, feelslike, temperature, maxTemp, mi
             textAlign="center"
             minHeight="150px"
           >
-            <MDBox
-              component="img"
-              src={image}
-              alt={weather}
-              width="30%"
-              position="relative"
-              zIndex={1}
-            />
+            {image && (
+              <MDBox
+                component="img"
+                src={image}
+                alt={weather}
+                width="30%"
+                position="relative"
+                zIndex={1}
+              />
+            )}
           </MDBox>
         </Grid>
 
@@ -34,7 +36,7 @@ function WeatherCard({ city, image, weather, feelslike, temperature, maxTemp, mi
             <MDTypography color="white" variant="h1" fontWeight="bold">
               {temperature}
             </MDTypography>
-            <MDTypography color="primary" variant="h3" fontWeight="regular">
+            <MDTypography color="white" variant="h3" fontWeight="regular">
               {city}
             </MDTypography>
           </MDBox>
@@ -63,7 +65,7 @@ function WeatherCard({ city, image, weather, feelslike, temperature, maxTemp, mi
 }
 
 WeatherCard.defaultProps = {
-  image: "Loading...",
+  image: undefined,
   weather: "Loading...",
   temperature: "Loading...",
   maxTemp: "Loading...",
