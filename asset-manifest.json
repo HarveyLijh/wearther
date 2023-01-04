@@ -1,0 +1,14 @@
+{
+  "files": {
+    "main.css": "/wearther/static/css/main.edfbc368.css",
+    "main.js": "/wearther/static/js/main.97ed7585.js",
+    "static/media/bg-sign-in-basic.jpeg": "/wearther/static/media/bg-sign-in-basic.4733c6a4fdb8a2487550.jpeg",
+    "index.html": "/wearther/index.html",
+    "main.edfbc368.css.map": "/wearther/static/css/main.edfbc368.css.map",
+    "main.97ed7585.js.map": "/wearther/static/js/main.97ed7585.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.edfbc368.css",
+    "static/js/main.97ed7585.js"
+  ]
+}
