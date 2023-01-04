@@ -5,9 +5,7 @@ With the development of web technology and increased accuracy of meteorology, mo
 
 ## Live Demo
 
-http://150.230.46.230/
-
-P.S. Since we don't have a https right now, some chrome users may need to open it with a guest chrome account or go to chrome://flags/#unsafely-treat-insecure-origin-as-secure and add our website to the list http://150.230.46.230/
+https://harveylijh.github.io/wearther/
 
 ![screenshot](https://raw.githubusercontent.com/HarveyLijh/wearther-frontend/main/Capture1.PNG)
 ![screenshot](https://raw.githubusercontent.com/HarveyLijh/wearther-frontend/main/Capture2.PNG)
