@@ -1,8 +1,7 @@
-# Wearther-Frontend
+# Wearther
+With the development of web technology and increased accuracy of meteorology, more and more weather forecasting apps have emerged in the market. As many of them have potent functionalities such as minute-level precipitation forecasts, and air quality indications, they seldom give accurate and detailed suggestions on what to wear and how much to wear based on the weather. We believe this functionality can significantly ease our lives by saving time in checking the weather and considering what to wear before leaving home every day. Therefore, we introduce a Wearther, a cloud-hosted web application with a modern UI design and powerful backend logic. It allows users to check real-time weather conditions, review weather-based clothing suggestions, and roll back account-based history data.
 
-This is the front end code repo of wearther app, an app predict weather for you and suggests you what to wear based on the weather conditions.
-
-It's implemented using React with JS
+*This is the front end code repo of wearther app, an app predict weather for you and suggests you what to wear based on the weather conditions. It's implemented using React with JS
 
 ## Live Demo
 
